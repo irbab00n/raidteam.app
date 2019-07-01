@@ -1,0 +1,21 @@
+@import '../../../sass/colors';
+@import '../../../sass/mixins/flexbox';
+@import '../../../sass/mixins/transition';
+
+#nav-brand {
+  @include transition(0.2s);
+  @include flex;
+  @include align-items(center);
+  cursor: pointer;
+  color: $wow-gold;
+  font-size: 24px;
+  height: 100%;
+  text-decoration: none;
+
+  &:hover {
+    color: $wow-gold-hover;
+  }
+  &:active {
+    color: $wow-gold-active;
+  }
+}

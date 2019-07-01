@@ -1,0 +1,18 @@
+html {
+  margin: 0;
+  margin-top: 0px;
+  padding: 0;
+}
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+html.fixed {
+  overflow: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}

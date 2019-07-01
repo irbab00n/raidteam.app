@@ -1,0 +1,15 @@
+@import '../../sass/colors';
+@import '../../sass/mixins/flexbox';
+
+nav {
+  @include flex;
+  @include align-items(center);
+  @include justify-between;
+  background-color: $theme-indigo;
+  height: 60px;
+  padding: 0px 40px;
+}
+
+.nav-container {
+  height: 100%;
+}

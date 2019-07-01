@@ -1,0 +1,69 @@
+@mixin flex {
+  display:                  -webkit-box;
+  display:                  -webkit-flex;
+  display:                  -ms-flexbox;
+  display:                  flex;
+}
+
+@mixin flex-column {
+  -webkit-box-orient:       vertical;
+  -webkit-box-direction:    normal;
+  -webkit-flex-direction:   column;
+  -ms-flex-direction:       column;
+  flex-direction:           column;
+}
+
+@mixin flex-wrap ($type) {
+  -webkit-flex-wrap:        $type;
+  -ms-flex-wrap:            $type;
+  flex-wrap:                $type;
+}
+
+@mixin align-items ($position) {
+  -webkit-box-align:        $position;
+  -webkit-align-items:      $position;
+  -ms-flex-align:           $position;
+  align-items:              $position;
+}
+
+@mixin justify-around {
+  -webkit-justify-content:  space-around;
+  -ms-flex-pack:            distribute;
+  justify-content:          space-around;
+}
+
+@mixin justify-between {
+  -webkit-box-pack:         justify;
+  -webkit-justify-content:  space-between;
+  -ms-flex-pack:            justify;
+  justify-content:          space-between;
+}
+
+@mixin justify-center {
+  -webkit-box-pack:         center;
+  -webkit-justify-content:  center;
+  -ms-flex-pack:            center;
+  justify-content:          center;
+}
+
+@mixin justify-end {
+  -webkit-box-pack:         end;
+  -webkit-justify-content:  flex-end;
+  -ms-flex-pack:            end;
+  justify-content:          flex-end;
+}
+
+@mixin justify-evenly {
+  -webkit-box-pack:         space-evenly;
+  -webkit-justify-content:  space-evenly;
+  -ms-flex-pack:            space-evenly;
+  justify-content:          space-evenly;
+}
+
+@mixin justify-start {
+  -webkit-box-pack:         start;
+  -webkit-justify-content:  start;
+  -ms-flex-pack:            start;
+  justify-content:          start;
+}
+
