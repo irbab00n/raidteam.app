@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SecondaryButton Should render correctly with no props 1`] = `
+<StyledComponent
+  forwardedComponent={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-bdVaJa",
+        "isStatic": false,
+        "rules": Array [
+          "
+  transition: 0.2s;
+  cursor: pointer;
+  height: ",
+          [Function],
+          ";
+  min-width: ",
+          [Function],
+          ";
+
+  background-color: ",
+          [Function],
+          ";
+
+  color: ",
+          [Function],
+          ";
+  font-size: ",
+          [Function],
+          ";
+
+  border-size: ",
+          [Function],
+          ";
+  border-radius: ",
+          [Function],
+          ";
+  border-style: ",
+          [Function],
+          ";
+  border-color: ",
+          [Function],
+          ";
+
+  padding-left: ",
+          [Function],
+          ";
+  padding-right: ",
+          [Function],
+          ";
+  padding-bottom: ",
+          [Function],
+          ";
+  padding-top: ",
+          [Function],
+          ";
+
+  &:hover {
+    background-color: ",
+          [Function],
+          ";
+  }
+
+  &:active {
+    background-color: ",
+          [Function],
+          ";
+    color: #ffd36b;
+    outline: 0;
+  }
+
+  &:focus {
+    outline-width: 0;
+  }
+",
+        ],
+      },
+      "displayName": "styled.button",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-bdVaJa",
+      "target": "button",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    }
+  }
+  forwardedRef={null}
+/>
+`;
