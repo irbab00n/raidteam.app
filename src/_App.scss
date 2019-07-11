@@ -3,6 +3,7 @@
 
 .content-block {
   @include flex;
+  @include flex-column;
   height: 400px;
   margin: 2px 0;
 
@@ -14,6 +15,7 @@
   &.eggshell {
     background-color: $gray-200;
   }
+
   &.warmgray {
     background-color: $gray-300;
   }
