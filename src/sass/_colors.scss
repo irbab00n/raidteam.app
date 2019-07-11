@@ -287,39 +287,39 @@ $brown-A700: #5d4037 !default;
 $brown: $brown-500 !default;
 
 
-$grey-50: #fafafa !default;
-$grey-100: #f5f5f5 !default;
-$grey-200: #eeeeee !default;
-$grey-300: #e0e0e0 !default;
-$grey-400: #bdbdbd !default;
-$grey-500: #9e9e9e;
-$rgb-grey-500: "158, 158, 158" !default;
-$grey-600: #757575 !default;
-$grey-700: #616161 !default;
-$grey-800: #424242 !default;
-$grey-900: #212121 !default;
-$grey-A100: #f5f5f5 !default;
-$grey-A200: #eeeeee !default;
-$grey-A400: #bdbdbd !default;
-$grey-A700: #616161 !default;
-$grey: $grey-500 !default;
+$gray-50: #fafafa !default;
+$gray-100: #f5f5f5 !default;
+$gray-200: #eeeeee !default;
+$gray-300: #e0e0e0 !default;
+$gray-400: #bdbdbd !default;
+$gray-500: #9e9e9e;
+$rgb-gray-500: "158, 158, 158" !default;
+$gray-600: #757575 !default;
+$gray-700: #616161 !default;
+$gray-800: #424242 !default;
+$gray-900: #212121 !default;
+$gray-A100: #f5f5f5 !default;
+$gray-A200: #eeeeee !default;
+$gray-A400: #bdbdbd !default;
+$gray-A700: #616161 !default;
+$gray: $gray-500 !default;
 
 
-$blue-grey-50: #eceff1 !default;
-$blue-grey-100: #cfd8dc !default;
-$blue-grey-200: #b0bec5 !default;
-$blue-grey-300: #90a4ae !default;
-$blue-grey-400: #78909c !default;
-$blue-grey-500: #607d8b !default;
-$blue-grey-600: #546e7a !default;
-$blue-grey-700: #455a64 !default;
-$blue-grey-800: #37474f !default;
-$blue-grey-900: #263238 !default;
-$blue-grey-A100: #cfd8dc !default;
-$blue-grey-A200: #b0bec5 !default;
-$blue-grey-A400: #78909c !default;
-$blue-grey-A700: #455a64 !default;
-$blue-grey: $blue-grey-500 !default;
+$blue-gray-50: #eceff1 !default;
+$blue-gray-100: #cfd8dc !default;
+$blue-gray-200: #b0bec5 !default;
+$blue-gray-300: #90a4ae !default;
+$blue-gray-400: #78909c !default;
+$blue-gray-500: #607d8b !default;
+$blue-gray-600: #546e7a !default;
+$blue-gray-700: #455a64 !default;
+$blue-gray-800: #37474f !default;
+$blue-gray-900: #263238 !default;
+$blue-gray-A100: #cfd8dc !default;
+$blue-gray-A200: #b0bec5 !default;
+$blue-gray-A400: #78909c !default;
+$blue-gray-A700: #455a64 !default;
+$blue-gray: $blue-gray-500 !default;
 
 
 $black: #000000; $rgb-black: "0,0,0" !default;
@@ -357,19 +357,166 @@ $wow-gold: #f8b700;
 $wow-gold-hover: #ffc933;
 $wow-gold-active: #b38300;
 
+// NIGHT ELF
+$ne-purple-1-light: #AE9DCA;
+$ne-purple-1: #5D3A94;
+$ne-purple-1-dark: #25173B;
 
-$theme-indigo: #1A237E;
-$theme-indigo-hover: #232ea9;
-$theme-indigo-active: #111755;
-$theme-electricgreen: #DCF763;
-$theme-electricgreen-hover: #e9fa9e;
-$theme-electricgreen-active: #cef425;
-$theme-eggshell: #F1F2EE;
-$theme-eggshell-hover: #dbded4;
-$theme-eggshell-active: #f3f4f1;
-$theme-warmgray: #BFB7B6;
-$theme-warmgray-hover: #dbd7d6;
-$theme-warmgray-active: #a09492;
-$theme-coolgray: #848C8E;
-$theme-coolgray-hover: #a2a8a9;
-$theme-coolgray-active: #62686a;
+$ne-purple-2-light: #AE99C4;
+$ne-purple-2: #5C3389;
+$ne-purple-2-dark: #251436;
+
+$ne-purple-3-light: #9890A3;
+$ne-purple-3: #312146;
+$ne-purple-3-dark: #130D1C;
+
+$ne-purple-4-light: #A995A8;
+$ne-purple-4: #532B50;
+$ne-purple-4-dark: #211120;
+
+$ne-green-light: #8BA18F;
+$ne-green: #164221;
+$ne-green-dark: #081A0D;
+
+$ne-gray-1-light: #A2A5AC;
+$ne-gray-1: #444A58;
+$ne-gray-1-dark: #1B1D23;
+
+$ne-gray-2-light: #8C8A8D;
+$ne-gray-2: #19141A;
+$ne-gray-2-dark: #0A080A;
+
+// -- VIOLET
+$night-elf-violet-50: #6B3DDD;
+$night-elf-violet-100: #6A3CD2;
+$night-elf-violet-200: #5D3A94;
+$night-elf-violet-300: #543389;
+$night-elf-violet-400: #4C3174;
+$night-elf-violet-500: #4C3174;
+$night-elf-violet-600: #442374;
+$night-elf-violet-700: #402266;
+$night-elf-violet-800: #312146;
+$night-elf-violet-900: #201535;
+// -- PURPLE
+$night-elf-purple-50: #a13bb1;
+$night-elf-purple-100: #8d339b;
+$night-elf-purple-200: #7c2b88;
+$night-elf-purple-300: #682472;
+$night-elf-purple-400: #531d5a;
+$night-elf-purple-500: #45194b;
+$night-elf-purple-600: #37143b;
+$night-elf-purple-700: #2c1030;
+$night-elf-purple-800: #1f0b22;
+$night-elf-purple-900: #110613;
+// -- GREEN
+$night-elf-green-50: #7BC24A;
+$night-elf-green-100: #72b645;
+$night-elf-green-200: #69a740;
+$night-elf-green-300: #61993c;
+$night-elf-green-400: #568835;
+$night-elf-green-500: #426829;
+$night-elf-green-600: #3f6327;
+$night-elf-green-700: #2a421a;
+$night-elf-green-800: #1f3013;
+$night-elf-green-900: #0f1809;
+
+// AZERITE
+
+$azerite-teal-50: #20F6F8;
+$azerite-teal-100: #1ee5e9;
+$azerite-teal-200: #1bd1d4;
+$azerite-teal-300: #16b0b3;
+$azerite-teal-400: #149a9c;
+$azerite-teal-500: #118183;
+$azerite-teal-600: #0d6163;
+$azerite-teal-700: #0c5758;
+$azerite-teal-800: #0a4546;
+$azerite-teal-900: #073233;
+
+$azerite-blue-50: #39A1F0;
+$azerite-blue-100: #3695df;
+$azerite-blue-200: #3189cc;
+$azerite-blue-300: #2c7ab6;
+$azerite-blue-400: #256697;
+$azerite-blue-500: #1e5580;
+$azerite-blue-600: #184568;
+$azerite-blue-700: #113149;
+$azerite-blue-800: #071620;
+$azerite-blue-800: #0c2335;
+
+$azerite-violet-50: #645ff8;
+$azerite-violet-100: #5e59e7;
+$azerite-violet-200: #524ecc;
+$azerite-violet-300: #4945b6;
+$azerite-violet-400: #3e3b9c;
+$azerite-violet-500: #353285;
+$azerite-violet-600: #292666;
+$azerite-violet-700: #1e1b49;
+$azerite-violet-800: #141231;
+$azerite-violet-900: #0b0a1b;
+
+$azerite-purple-50: #874fff;
+$azerite-purple-100: #7b48e9;
+$azerite-purple-200: #6f41d3;
+$azerite-purple-300: #6239b9;
+$azerite-purple-400: #52319b;
+$azerite-purple-500: #442980;
+$azerite-purple-600: #362066;
+$azerite-purple-700: #261747;
+$azerite-purple-800: #190f2e;
+$azerite-purple-900: #0a0613;
+
+$azerite-magenta-50: #f38aff;
+$azerite-magenta-100: #d97be4;
+$azerite-magenta-200: #bf6cc9;
+$azerite-magenta-300: #a55dad;
+$azerite-magenta-400: #884d8f;
+$azerite-magenta-500: #703f75;
+$azerite-magenta-600: #542f58;
+$azerite-magenta-700: #3a203d;
+$azerite-magenta-800: #241325;
+$azerite-magenta-900: #170c18;
+
+$azerite-pink-50: #ff9fac;
+$azerite-pink-100: #e58f9b;
+$azerite-pink-200: #ce818b;
+$azerite-pink-300: #b6727b;
+$azerite-pink-400: #9c626a;
+$azerite-pink-500: #805157;
+$azerite-pink-600: #643f44;
+$azerite-pink-700: #422a2d;
+$azerite-pink-800: #27191a;
+$azerite-pink-900: #180f10;
+
+$azerite-sherbert-50: #ffb089;
+$azerite-sherbert-100: #eba37f;
+$azerite-sherbert-200: #cf9071;
+$azerite-sherbert-300: #b47e62;
+$azerite-sherbert-400: #9b6b54;
+$azerite-sherbert-500: #815946;
+$azerite-sherbert-600: #664638;
+$azerite-sherbert-700: #473128;
+$azerite-sherbert-800: #271b16;
+$azerite-sherbert-900: #0e0908;
+
+$azerite-gold-50: #ffc04a;
+$azerite-gold-100: #ebb044;
+$azerite-gold-200: #d8a23e;
+$azerite-gold-300: #c09038;
+$azerite-gold-400: #a57c2f;
+$azerite-gold-500: #8d6a28;
+$azerite-gold-600: #775922;
+$azerite-gold-700: #5c451a;
+$azerite-gold-800: #241b0b;
+$azerite-gold-900: #3d2e12;
+
+$azerite-orange-50: #feae00;
+$azerite-orange-100: #eea301;
+$azerite-orange-200: #d89402;
+$azerite-orange-300: #bd8100;
+$azerite-orange-400: #a16f01;
+$azerite-orange-500: #8d6000;
+$azerite-orange-600: #755000;
+$azerite-orange-700: #583c00;
+$azerite-orange-800: #291c00;
+$azerite-orange-900: #3a2800;

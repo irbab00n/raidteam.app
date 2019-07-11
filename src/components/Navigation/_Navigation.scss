@@ -5,7 +5,7 @@ nav {
   @include flex;
   @include align-items(center);
   @include justify-between;
-  background-color: $theme-indigo;
+  background-color: $ne-gray-1-dark;
   height: 60px;
   padding: 0px 40px;
 }
