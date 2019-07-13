@@ -1,0 +1,10 @@
+@import '../../sass/app-dimensions';
+@import '../../sass/colors';
+@import '../../sass/mixins/flexbox';
+@import '../../sass/mixins/transition';
+
+#content-panel {
+  margin-left: $feature-sidebar-width;
+  position: relative;
+  top: $navigation-height;
+}

@@ -1,0 +1,11 @@
+@import '../../sass/app-dimensions';
+@import '../../sass/colors';
+@import '../../sass/mixins/flexbox';
+
+#feature-sidebar {
+  background-color: $ne-purple-3;
+  height: calc(100vh - #{$navigation-height});
+  position: fixed;
+  top: $navigation-height;
+  width: $feature-sidebar-width;
+}

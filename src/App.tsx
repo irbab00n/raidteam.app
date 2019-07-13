@@ -1,42 +1,54 @@
 import * as React from 'react';
+import * as ReactRouter from 'react-router';
+import * as history from 'history';
 import './_App.scss';
 
+import ContentPanel from './components/ContentPanel';
 import { RectangleGradientLoader } from './components/Loaders';
 // import { PrimaryButton } from './components/Buttons';
 
 const { lazy, Suspense } = React;
+const { Router, Route, Switch } = ReactRouter;
+const { createBrowserHistory } = history;
 const Navigation = lazy(() => import('./components/Navigation'));
 const NavBrand = lazy(() => import('./components/Navigation/NavBrand'));
-const PrimaryButton = lazy(() => import('./components/Buttons/PrimaryButton'));
-const SecondaryButton = lazy(() =>
-  import('./components/Buttons/SecondaryButton')
-);
+// const PrimaryButton = lazy(() => import('./components/Buttons/PrimaryButton'));
+// const SecondaryButton = lazy(() => import('./components/Buttons/SecondaryButton'));
+const FeatureSidebar = lazy(() => import('./components/FeatureSidebar'));
 
-const App = () => (
-  <div className="App">
-    <Suspense fallback={<RectangleGradientLoader height="60px" />}>
-      <Navigation
-        brand={<NavBrand title="Navigation" link="/" />}
-        links={null}
-      />
-    </Suspense>
-    <div className="content-block centered">
-      <Suspense
-        fallback={<RectangleGradientLoader height="40px" width="100px" />}
-      >
-        <h1>Primary Button</h1>
-        <PrimaryButton>Primary Button</PrimaryButton>
+const appHistory = createBrowserHistory();
+
+const App = () => {
+  const features = [
+    {
+      name: 'Character',
+      icon: <i className="fas fa-user"></i>,
+    },
+    {
+      name: 'Guild',
+      icon: <i className="fas fa-users"></i>,
+    },
+    {
+      name: 'Raid Team',
+      icon: <i className="fas fa-users"></i>,
+    },
+  ];
+
+  return (
+    <Router history={appHistory}>
+      <Suspense fallback={<RectangleGradientLoader height="60px" />}>
+        <Navigation brand={<NavBrand title="RaidTeam" link="/" />} links={null} />
       </Suspense>
-    </div>
-    <div className="content-block centered">
-      <Suspense
-        fallback={<RectangleGradientLoader height="40px" width="100px" />}
-      >
-        <h1>Secondary Button</h1>
-        <SecondaryButton>Secondary Button</SecondaryButton>
+      <Suspense fallback={<RectangleGradientLoader height="calc(100vh - 60px)" width="60px" />}>
+        <FeatureSidebar features={features} />
       </Suspense>
-    </div>
-  </div>
-);
+      <ContentPanel>
+        <Switch>
+          <Route exact path="/" render={() => <div className="content-panel">Main Panel</div>} />
+        </Switch>
+      </ContentPanel>
+    </Router>
+  );
+};
 
 export default App;

@@ -2,6 +2,7 @@ html {
   margin: 0;
   margin-top: 0px;
   padding: 0;
+  font-family: 'Semplicita Pro', 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 html * {
@@ -9,10 +10,13 @@ html * {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
+
 html.fixed {
   overflow: hidden;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
