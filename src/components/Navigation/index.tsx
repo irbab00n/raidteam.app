@@ -2,24 +2,17 @@ import * as React from 'react';
 import './_Navigation.scss';
 
 interface NavigationProps {
-  brand: any
-  links: any
+  left: any;
+  right: any;
 }
 
 const Navigation = (props: NavigationProps) => {
-  const {
-    brand,
-    links
-  } = props;
+  const { left, right } = props;
 
   return (
     <nav>
-      <div className="nav-container">
-        {brand}
-      </div>
-      <div className="nav-container">
-        {links}
-      </div>
+      <div className="nav-container">{left}</div>
+      <div className="nav-container">{right}</div>
     </nav>
   );
 };

@@ -12,10 +12,17 @@
 
 .ch_container {
   @include flex;
+  @include align-items(center);
+
   height: 100%;
   width: 100%;
 
+  &.left {
+    padding-right: 10px;
+  }
+
   &.right {
     @include justify-end;
+    padding-left: 10px;
   }
 }

@@ -45,7 +45,10 @@ const App = () => {
   return (
     <Router history={appHistory}>
       <Suspense fallback={<RectangleGradientLoader height="60px" />}>
-        <Navigation brand={<NavBrand title="RaidTeam" link="/" />} links={null} />
+        <Navigation
+          left={<NavBrand title="RaidTeam" link="/" />}
+          right={<i className="fa fa-user"></i>}
+        />
       </Suspense>
       <Suspense fallback={<RectangleGradientLoader height="calc(100vh - 60px)" width="60px" />}>
         <FeatureSidebar features={features} />

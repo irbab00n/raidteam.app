@@ -21,21 +21,16 @@ interface SecondaryButtonProps {
 const SecondaryButton = styled.button`
   transition: 0.2s;
   cursor: pointer;
-  height: ${(props: SecondaryButtonProps) =>
-    props.height ? props.height : '40px'};
-  min-width: ${(props: SecondaryButtonProps) =>
-    props.width ? props.height : '100px'};
+  height: ${(props: SecondaryButtonProps) => (props.height ? props.height : '40px')};
+  min-width: ${(props: SecondaryButtonProps) => (props.width ? props.height : '100px')};
 
   background-color: ${(props: SecondaryButtonProps) =>
     props.backgroundColor ? props.backgroundColor : 'transparent'};
 
-  color: ${(props: SecondaryButtonProps) =>
-    props.fontColor ? props.fontColor : '#f8b700'};
-  font-size: ${(props: SecondaryButtonProps) =>
-    props.fontSize ? props.fontSize : '16px'};
+  color: ${(props: SecondaryButtonProps) => (props.fontColor ? props.fontColor : '#f8b700')};
+  font-size: ${(props: SecondaryButtonProps) => (props.fontSize ? props.fontSize : '16px')};
 
-  border-size: ${(props: SecondaryButtonProps) =>
-    props.borderSize ? props.borderSize : '2px'};
+  border-width: ${(props: SecondaryButtonProps) => (props.borderSize ? props.borderSize : '2px')};
   border-radius: ${(props: SecondaryButtonProps) =>
     props.borderRadius ? props.borderRadius : '4px'};
   border-style: ${(props: SecondaryButtonProps) =>
@@ -43,14 +38,10 @@ const SecondaryButton = styled.button`
   border-color: ${(props: SecondaryButtonProps) =>
     props.borderColor ? props.borderColor : '#c77e19'};
 
-  padding-left: ${(props: SecondaryButtonProps) =>
-    props.xPadding ? props.xPadding : '10px'};
-  padding-right: ${(props: SecondaryButtonProps) =>
-    props.xPadding ? props.xPadding : '10px'};
-  padding-bottom: ${(props: SecondaryButtonProps) =>
-    props.yPadding ? props.yPadding : '0px'};
-  padding-top: ${(props: SecondaryButtonProps) =>
-    props.yPadding ? props.yPadding : '0px'};
+  padding-left: ${(props: SecondaryButtonProps) => (props.xPadding ? props.xPadding : '10px')};
+  padding-right: ${(props: SecondaryButtonProps) => (props.xPadding ? props.xPadding : '10px')};
+  padding-bottom: ${(props: SecondaryButtonProps) => (props.yPadding ? props.yPadding : '0px')};
+  padding-top: ${(props: SecondaryButtonProps) => (props.yPadding ? props.yPadding : '0px')};
 
   &:hover {
     background-color: ${(props: SecondaryButtonProps) =>
