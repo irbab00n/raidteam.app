@@ -1,7 +1,21 @@
 @import '../../../sass/app-dimensions';
 @import '../../../sass/colors';
+@import '../../../sass/mixins/flexbox';
 
 #character-header {
+  @include flex;
+  @include justify-between;
   background-color: $azerite-blue-500;
   height: $navigation-height;
+  padding: 0px 20px;
+}
+
+.ch_container {
+  @include flex;
+  height: 100%;
+  width: 100%;
+
+  &.right {
+    @include justify-end;
+  }
 }

@@ -13,8 +13,7 @@ const CharacterPage = (props: CharacterPageProps) => {
 
   return (
     <div id="character-page">
-      <CharacterHeader />
-      <section className="cp_container full-width"></section>
+      <CharacterHeader left={'null'} right={'null'} />
     </div>
   );
 };
