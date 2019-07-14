@@ -7,30 +7,38 @@ import ContentPanel from './components/ContentPanel';
 import { RectangleGradientLoader } from './components/Loaders';
 // import { PrimaryButton } from './components/Buttons';
 
-const { lazy, Suspense } = React;
+const { lazy, Suspense, useEffect } = React;
 const { Router, Route, Switch } = ReactRouter;
 const { createBrowserHistory } = history;
+
+// COMPONENTS
 const Navigation = lazy(() => import('./components/Navigation'));
 const NavBrand = lazy(() => import('./components/Navigation/NavBrand'));
-// const PrimaryButton = lazy(() => import('./components/Buttons/PrimaryButton'));
-// const SecondaryButton = lazy(() => import('./components/Buttons/SecondaryButton'));
 const FeatureSidebar = lazy(() => import('./components/FeatureSidebar'));
 
-const appHistory = createBrowserHistory();
+// PAGES
+const CharacterPage = lazy(() => import('./pages/CharacterPage'));
+const GuildPage = lazy(() => import('./pages/GuildPage'));
+const RaidPage = lazy(() => import('./pages/RaidPage'));
+
+export const appHistory = createBrowserHistory();
 
 const App = () => {
   const features = [
     {
       name: 'Character',
+      endpoint: '/character',
       icon: <i className="fas fa-user"></i>,
     },
     {
       name: 'Guild',
+      endpoint: '/guild',
       icon: <i className="fas fa-users"></i>,
     },
     {
       name: 'Raid Team',
-      icon: <i className="fas fa-users"></i>,
+      endpoint: '/raid',
+      icon: <i className="fas fa-chart-pie"></i>,
     },
   ];
 
@@ -44,7 +52,38 @@ const App = () => {
       </Suspense>
       <ContentPanel>
         <Switch>
-          <Route exact path="/" render={() => <div className="content-panel">Main Panel</div>} />
+          <Route
+            exact
+            path="/"
+            render={({ match }) => {
+              console.log('match: ', match);
+              return <div className="content-panel">Main Panel</div>;
+            }}
+          />
+          <Route
+            path="/character"
+            render={({ match }) => (
+              <Suspense fallback={<div>Loading</div>}>
+                <CharacterPage match={match} />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/guild"
+            render={({ match }) => (
+              <Suspense fallback={<div>Loading</div>}>
+                <GuildPage match={match} />
+              </Suspense>
+            )}
+          />
+          <Route
+            path="/raid"
+            render={({ match }) => (
+              <Suspense fallback={<div>Loading</div>}>
+                <RaidPage match={match} />
+              </Suspense>
+            )}
+          />
         </Switch>
       </ContentPanel>
     </Router>
