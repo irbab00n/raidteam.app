@@ -1,0 +1,11 @@
+@import '../../sass/colors';
+@import '../../sass/mixins/flexbox';
+@import '../../sass/mixins/transition';
+
+.cp_character-search {
+  @include flex;
+}
+
+.cp_header-text {
+  color: $wow-gold;
+}

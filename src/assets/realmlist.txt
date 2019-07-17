@@ -1,0 +1,6 @@
+enUS
+esMX
+enGB
+esES
+frFR
+ruRU

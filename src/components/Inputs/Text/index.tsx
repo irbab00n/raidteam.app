@@ -18,7 +18,11 @@ interface TextInputWrapperProps extends TextInputProps {
 
 interface TextProps extends TextInputWrapperProps {
   leftElement?: any;
+  onChange?: Function;
+  placeholder?: string;
+  ref?: string;
   rightElement?: any;
+  value?: string;
 }
 
 const TextInput = styled.input.attrs({ type: 'text' })`
@@ -69,7 +73,13 @@ const TextInputWrapper = styled.div`
 // Supplied with will set the width of the parent container.  The width of the textbox will respond based on the presence or non-pressence of additional elements to the left or right
 
 const Text = (props: TextProps) => {
-  const { leftElement, rightElement } = props;
+  const {
+    leftElement,
+    rightElement,
+    onChange: changeHandler = () => {},
+    placeholder,
+    value,
+  } = props;
 
   const determineBorderRadius = (left, right, props) => {
     if (props.borderRadius) {
@@ -93,6 +103,8 @@ const Text = (props: TextProps) => {
       <TextInput
         {...props}
         borderRadius={determineBorderRadius(leftElement, rightElement, props)}
+        placeholder={placeholder}
+        value={value}
       />
       {/* If a right is supplied, then we don't need to pass then the right input border radius should be 0 */}
       {rightElement}
