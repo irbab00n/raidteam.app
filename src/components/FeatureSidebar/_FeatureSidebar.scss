@@ -23,23 +23,23 @@
     @include flex;
     @include align-items(center);
     @include justify-center;
-    @include transition(0.2s);
+    @include transition(0.1s);
     cursor: pointer;
     height: $feature-sidebar-width;
 
-    &.selected {
-      background-color: $black-opaque-50;
-      color: $azerite-blue-200;
-    }
-
     &:hover {
       background-color: $black-opaque-70;
-      color: $wow-gold-hover;
+      color: $azerite-blue-50;
+    }
+
+    &.selected {
+      background-color: $black-opaque-50;
+      color: $wow-gold;
     }
 
     &:active {
       background-color: $black-opaque-100;
-      color: $wow-gold-active;
+      color: $azerite-blue-600 !important;
     }
 
     & > a > label {

@@ -12,6 +12,11 @@ interface CharacterPageProps {
   match: object;
 }
 
+interface CharacterRequest {
+  characterName: string;
+  realmSlug: string;
+}
+
 const { useState } = React;
 
 // achievements
@@ -50,37 +55,12 @@ const findRealmSlug = target => {
 };
 
 const searchForCharacter = (characterName: string, realmSlug: string) => {
-  return axios.get('http://localhost:4000');
-  // console.log('Running searchForCharacter method: ', characterName, realmSlug);
-  // const region = 'us';
-  // let endpointCopy = characterEndpoints.slice(0);
-  // console.log(endpointCopy);
-  // let baseURL = `https://${region}.api.blizzard.com/profile/wow/character/${realmSlug}/${characterName}`;
-  // let urls = endpointCopy
-  //   .map(endpoint => {
-  //     console.log('endpoint to add: ', endpoint);
-  //     let assembled = baseURL + '/' + endpoint + '?access_token=USSTU3lftLE4krEqAMEs4eIwNPhh92RlcP';
-  //     console.log('assemlbled url: ', assembled);
-  //     return assembled;
-  //   })
-  //   .concat([baseURL + '?access_token=USSTU3lftLE4krEqAMEs4eIwNPhh92RlcP']);
-  // let promises = urls.map(url => {
-  //   // let headers = {
-  //   //   headers: {
-  //   //     Authorization: 'Bearer USSTU3lftLE4krEqAMEs4eIwNPhh92RlcP',
-  //   //   },
-  //   // };
-  //   return axios.get(url);
-  // });
-  // console.log('Launching requests...');
-  // Promise.all(promises)
-  //   .then(results => {
-  //     console.log('results of all API requests: ', results);
-  //   })
-  //   .catch(errors => {
-  //     console.log('errors have occurred: ', errors);
-  //   });
-  // https://{region}.api.blizzard.com/profile/wow/character/{realmSlug}/{characterName}/statistics
+  console.log('Running searchForCharacter method: ', characterName, realmSlug);
+  let params = {
+    characterName: characterName.toLowerCase(),
+    realmSlug: realmSlug,
+  };
+  return axios.get('http://localhost:4000/blizzard/character', { params });
 };
 
 const CharacterPage = (props: CharacterPageProps) => {

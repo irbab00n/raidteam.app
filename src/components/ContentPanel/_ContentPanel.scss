@@ -4,7 +4,8 @@
 @import '../../sass/mixins/transition';
 
 #content-panel {
+  background-color: $azerite-blue-700;
+  height: calc(100vh - #{$navigation-height});
   margin-left: $feature-sidebar-width;
-  position: relative;
-  top: $navigation-height;
+  overflow-y: scroll;
 }

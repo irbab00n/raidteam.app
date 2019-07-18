@@ -8,7 +8,6 @@ nav {
   @include justify-between;
   background-color: $ne-gray-1-dark;
   height: $navigation-height;
-  position: fixed;
   top: 0;
   width: 100%;
 }

@@ -50,7 +50,11 @@ const App = () => {
           right={<i className="fa fa-user"></i>}
         />
       </Suspense>
-      <Suspense fallback={<RectangleGradientLoader height="calc(100vh - 60px)" width="60px" />}>
+      <Suspense
+        fallback={
+          <RectangleGradientLoader height="calc(100vh - 60px)" width="60px" position="fixed" />
+        }
+      >
         <FeatureSidebar features={features} />
       </Suspense>
       <ContentPanel>
