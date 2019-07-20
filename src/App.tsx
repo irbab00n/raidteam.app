@@ -7,7 +7,7 @@ import ContentPanel from './components/ContentPanel';
 import { RectangleGradientLoader } from './components/Loaders';
 // import { PrimaryButton } from './components/Buttons';
 
-const { lazy, Suspense, useEffect } = React;
+const { lazy, Suspense } = React;
 const { Router, Route, Switch } = ReactRouter;
 const { createBrowserHistory } = history;
 
