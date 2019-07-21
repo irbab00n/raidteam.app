@@ -6,6 +6,7 @@ import { CharacterHeader } from '../../components/CharacterPage';
 import { Text } from '../../components/Inputs';
 import { PrimaryButton } from '../../components/Buttons';
 import { GridWrapper, GridItem } from '../../components/Grid';
+import CharacterDisplay from '../../components/CharacterDisplay';
 
 import realms from '../../lib/realms';
 
@@ -133,27 +134,12 @@ const CharacterPage = (props: CharacterPageProps) => {
         }
       />
       <GridWrapper>
-        <GridItem size="full" centered>
-          Full-Size
-        </GridItem>
-        <GridItem size="half" centered>
-          Half-Size
-        </GridItem>
-        <GridItem size="half" centered>
-          Half-Size
-        </GridItem>
-        <GridItem size="quarter" centered>
-          quarter-Size
-        </GridItem>
-        <GridItem size="quarter" centered>
-          quarter-Size
-        </GridItem>
-        <GridItem size="quarter" centered>
-          quarter-Size
-        </GridItem>
-        <GridItem size="quarter" centered>
-          quarter-Size
-        </GridItem>
+        {characterData !== null && (
+          <GridItem size="half">
+            <CharacterDisplay characterData={characterData} />
+          </GridItem>
+        )}
+        {characterData !== null && <GridItem size="half"></GridItem>}
       </GridWrapper>
     </div>
   );

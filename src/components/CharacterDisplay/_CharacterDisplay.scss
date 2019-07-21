@@ -1,0 +1,12 @@
+@import '../../sass/colors';
+@import '../../sass/mixins/flexbox';
+@import '../../sass/mixins/transition';
+
+#character-display {
+  width: 100%;
+}
+
+.cd-header-wrapper {
+  background-color: $azerite-blue-600;
+  height: 100px;
+}
