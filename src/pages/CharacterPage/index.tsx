@@ -4,7 +4,8 @@ import './_CharacterPage.scss';
 
 import { CharacterHeader } from '../../components/CharacterPage';
 import { Text } from '../../components/Inputs';
-import { PrimaryButton, SecondaryButton } from '../../components/Buttons';
+import { PrimaryButton } from '../../components/Buttons';
+import { GridWrapper, GridItem } from '../../components/Grid';
 
 import realms from '../../lib/realms';
 
@@ -130,6 +131,29 @@ const CharacterPage = (props: CharacterPageProps) => {
           </form>
         }
       />
+      <GridWrapper>
+        <GridItem size="full" centered>
+          Full-Size
+        </GridItem>
+        <GridItem size="half" centered>
+          Half-Size
+        </GridItem>
+        <GridItem size="half" centered>
+          Half-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+      </GridWrapper>
     </div>
   );
 };

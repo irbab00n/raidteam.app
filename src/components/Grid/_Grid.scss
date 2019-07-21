@@ -1,0 +1,36 @@
+@import '../../sass/colors';
+@import '../../sass/mixins/flexbox';
+@import '../../sass/mixins/transition';
+
+.grid-wrapper {
+  @include flex;
+  @include flex-wrap(wrap);
+  width: 100%;
+}
+
+.grid-item {
+  @include transition(0.2s);
+  @include flex;
+  min-height: 32vh;
+
+  &:hover {
+    background-color: $white-opaque-10;
+  }
+
+  &.centered {
+    @include align-items(center);
+    @include justify-center;
+  }
+
+  &.full {
+    width: 100%;
+  }
+
+  &.half {
+    width: 50%;
+  }
+
+  &.quarter {
+    width: 25%;
+  }
+}
