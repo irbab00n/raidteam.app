@@ -6,7 +6,7 @@ nav {
   @include flex;
   @include align-items(center);
   @include justify-between;
-  background-color: $ne-gray-1-dark;
+  background-color: $ne-gray-2-dark;
   height: $navigation-height;
   top: 0;
   width: 100%;
