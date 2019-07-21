@@ -4,7 +4,8 @@ import './_CharacterPage.scss';
 
 import { CharacterHeader } from '../../components/CharacterPage';
 import { Text } from '../../components/Inputs';
-import { PrimaryButton, SecondaryButton } from '../../components/Buttons';
+import { PrimaryButton } from '../../components/Buttons';
+import { GridWrapper, GridItem } from '../../components/Grid';
 
 import realms from '../../lib/realms';
 
@@ -64,9 +65,23 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
 };
 
 const CharacterPage = (props: CharacterPageProps) => {
+  const [characterData, setCarachterData] = useState<any | null>(null);
   const [characterName, setCharacterName] = useState('');
   const [realmName, setRealmName] = useState('');
   const { match } = props;
+
+  const handleCharacterSearch = e => {
+    e.preventDefault();
+    let realmSlug = findRealmSlug(realmName);
+    if (realmSlug !== null) {
+      searchForCharacter(characterName, realmSlug).then(result => {
+        setCarachterData(result.data);
+        console.log('result from search for character: ', result.data);
+      });
+    } else {
+      // console.log(`Couldn't find the realm for the target you searched for: `, realmName);
+    }
+  };
 
   // console.log('match on Character Page: ', match);
   // console.log('current character name: ', characterName);
@@ -80,20 +95,7 @@ const CharacterPage = (props: CharacterPageProps) => {
       <CharacterHeader
         left={<span className="cp_header-text">Your Character</span>}
         right={
-          <form
-            className="cp_character-search"
-            onSubmit={e => {
-              e.preventDefault();
-              let realmSlug = findRealmSlug(realmName);
-              if (realmSlug !== null) {
-                searchForCharacter(characterName, realmSlug).then(result => {
-                  console.log('result from search for character: ', result);
-                });
-              } else {
-                console.log(`Couldn't find the realm for the target you searched for: `, realmName);
-              }
-            }}
-          >
+          <form className="cp_character-search" onSubmit={e => handleCharacterSearch(e)}>
             <Text
               value={characterName}
               placeholder="Character"
@@ -130,6 +132,29 @@ const CharacterPage = (props: CharacterPageProps) => {
           </form>
         }
       />
+      <GridWrapper>
+        <GridItem size="full" centered>
+          Full-Size
+        </GridItem>
+        <GridItem size="half" centered>
+          Half-Size
+        </GridItem>
+        <GridItem size="half" centered>
+          Half-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+        <GridItem size="quarter" centered>
+          quarter-Size
+        </GridItem>
+      </GridWrapper>
     </div>
   );
 };
