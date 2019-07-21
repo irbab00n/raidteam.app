@@ -1,6 +1,11 @@
 @import '../../sass/colors';
+@import '../../sass/mixins/box-shadow';
 @import '../../sass/mixins/flexbox';
 @import '../../sass/mixins/transition';
+
+#character-page {
+  @include box-shadow-inset(4px, 4px, 10px, 2px, $black-opaque-30);
+}
 
 .cp_character-search {
   @include flex;

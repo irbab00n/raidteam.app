@@ -1,15 +1,13 @@
-import * as React from 'react';
-import * as ReactRouter from 'react-router';
-import * as history from 'history';
+import React, { lazy, Suspense } from 'react';
+import { Router, Route, Switch } from 'react-router';
+import { createBrowserHistory } from 'history';
 import './_App.scss';
 
 import ContentPanel from './components/ContentPanel';
 import { RectangleGradientLoader } from './components/Loaders';
 // import { PrimaryButton } from './components/Buttons';
 
-const { lazy, Suspense } = React;
-const { Router, Route, Switch } = ReactRouter;
-const { createBrowserHistory } = history;
+import navLogo from './assets/raidteam-logo-small.png';
 
 // COMPONENTS
 const Navigation = lazy(() => import('./components/Navigation'));
@@ -46,7 +44,7 @@ const App = () => {
     <Router history={appHistory}>
       <Suspense fallback={<RectangleGradientLoader height="60px" />}>
         <Navigation
-          left={<NavBrand title="RaidTeam" link="/" />}
+          left={<NavBrand title={<img src={navLogo} alt="" />} link="/" />}
           right={<i className="fa fa-user"></i>}
         />
       </Suspense>

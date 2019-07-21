@@ -45,8 +45,8 @@ export interface Profile {
   race: ProfileAttribute;
   raid_progression: ProfileLink;
   realm: ProfileRealm;
-  specializations: ProfileLInk;
-  statistics: ProfileLInk;
-  titles: ProfileLInk;
+  specializations: ProfileLink;
+  statistics: ProfileLink;
+  titles: ProfileLink;
   _links: { [key: string]: ProfileLink; self: ProfileLink };
 }

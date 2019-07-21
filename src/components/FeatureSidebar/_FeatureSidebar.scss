@@ -4,7 +4,7 @@
 @import '../../sass/mixins/transition';
 
 #feature-sidebar {
-  background-color: $ne-purple-3;
+  background-color: $ne-gray-1-dark;
   height: calc(100vh - #{$navigation-height});
   position: fixed;
   top: $navigation-height;
