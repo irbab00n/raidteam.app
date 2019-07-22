@@ -7,6 +7,10 @@ import { Text } from '../../components/Inputs';
 import { PrimaryButton } from '../../components/Buttons';
 import { GridWrapper, GridItem } from '../../components/Grid';
 import CharacterDisplay from '../../components/CharacterDisplay';
+// import DisplayContainer from '../../components/CharacterPage/DisplayContainer';
+// import DisplayHeader from '../../components/CharacterPage/DisplayHeader';
+
+import ItemLevel from '../../components/CharacterPage/ItemLevel';
 
 import realms from '../../lib/realms';
 
@@ -139,7 +143,16 @@ const CharacterPage = (props: CharacterPageProps) => {
             <CharacterDisplay characterData={characterData} />
           </GridItem>
         )}
-        {characterData !== null && <GridItem size="half"></GridItem>}
+        {characterData !== null && (
+          <GridItem size="half">
+            <ItemLevel characterData={characterData} />
+          </GridItem>
+        )}
+        {characterData !== null && (
+          <GridItem size="full">
+            <ItemLevel characterData={characterData} />
+          </GridItem>
+        )}
       </GridWrapper>
     </div>
   );

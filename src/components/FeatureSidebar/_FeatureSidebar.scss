@@ -4,7 +4,7 @@
 @import '../../sass/mixins/transition';
 
 #feature-sidebar {
-  background-color: $ne-gray-1-dark;
+  background-color: $ne-gray-2;
   height: calc(100vh - #{$navigation-height});
   position: fixed;
   top: $navigation-height;
@@ -28,17 +28,17 @@
     height: $feature-sidebar-width;
 
     &:hover {
-      background-color: $black-opaque-70;
+      background-color: $white-opaque-10;
       color: $azerite-blue-50;
     }
 
     &.selected {
-      background-color: $black-opaque-50;
+      background-color: $white-opaque-20;
       color: $wow-gold;
     }
 
     &:active {
-      background-color: $black-opaque-100;
+      background-color: $white-opaque-30;
       color: $azerite-blue-600 !important;
     }
 

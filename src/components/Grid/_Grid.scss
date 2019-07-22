@@ -1,3 +1,4 @@
+@import '../../sass/app-responsive';
 @import '../../sass/colors';
 @import '../../sass/mixins/flexbox';
 @import '../../sass/mixins/transition';
@@ -28,9 +29,17 @@
 
   &.half {
     width: 50%;
+
+    @include respond-to-breakpoint(1060px) {
+      width: 100%;
+    }
   }
 
   &.quarter {
     width: 25%;
+
+    @include respond-to-breakpoint(1060px) {
+      width: 100%;
+    }
   }
 }

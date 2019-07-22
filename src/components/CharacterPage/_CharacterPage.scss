@@ -1,0 +1,22 @@
+@import '../../sass/colors';
+@import '../../sass/mixins/box-shadow';
+@import '../../sass/mixins/flexbox';
+@import '../../sass/mixins/transition';
+
+.cd_display-container {
+  @include flex;
+  @include flex-column;
+  @include box-shadow-inset(0px, 0px, 20px, 4px, $black-opaque-30);
+  background-color: $azerite-blue-900;
+  width: 100%;
+}
+
+.cd_display-header {
+  @include flex;
+  @include align-items(center);
+  background-color: $ne-gray-1-dark;
+  color: $wow-gold;
+  padding: 20px;
+  height: 50px;
+  width: 100%;
+}

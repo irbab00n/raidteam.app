@@ -335,9 +335,20 @@ $white-opaque-100: rgba(225, 225, 225, 1);
 $cosbytes-blue: #007ac1;
 $javascript-yellow: #f7db4e;
 
+$blizzard-blue: #00ccff;
 $wow-gold: #f8b700;
 $wow-gold-hover: #ffc933;
 $wow-gold-active: #b38300;
+
+$wow-poor: #9d9d9d;
+$wow-common: $white;
+$wow-uncommon: #1eff00;
+$wow-rare: #0070dd;
+$wow-epic: #a335ee;
+$wow-legendary: #ff8000;
+$wow-artifact: #e6cc80;
+$wow-heirloom: $blizzard-blue;
+$wow-token: $blizzard-blue;
 
 // NIGHT ELF
 $ne-purple-1-light: #ae9dca;
@@ -424,7 +435,7 @@ $azerite-blue-500: #1e5580;
 $azerite-blue-600: #184568;
 $azerite-blue-700: #113149;
 $azerite-blue-800: #071620;
-$azerite-blue-900: #0c2335;
+$azerite-blue-900: #0d273b;
 
 $azerite-violet-50: #645ff8;
 $azerite-violet-100: #5e59e7;
