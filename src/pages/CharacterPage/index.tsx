@@ -56,7 +56,11 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
     characterName: characterName.toLowerCase(),
     realmSlug: realmSlug,
   };
-  return axios.get('http://localhost:4000/blizzard/character', { params });
+  let apiLink =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/blizzard/character'
+      : process.env.RAIDTEAM_API_URL;
+  return axios.get(apiLink || '', { params });
 };
 
 const CharacterPage = (props: CharacterPageProps) => {
