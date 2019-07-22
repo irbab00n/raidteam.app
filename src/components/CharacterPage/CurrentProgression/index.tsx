@@ -29,7 +29,7 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
       lfrTimestamp: 0
       mythicKills: 0
       mythicTimestamp: 0
-      name: "Abyssal Commander Sivara"
+      name: "Abyssal Commander Sivara"*******
       normalKills: 2
       normalTimestamp: 1563653725000
     heroic: 0
@@ -72,6 +72,8 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
     });
   };
 
+  const lrfKillCount = getKillCount(latestRaid.bosses, 'lfr');
+
   return (
     <DisplayContainer id="current-progression">
       <DisplayHeader className="blue">
@@ -88,9 +90,7 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
           </DisplayHeader>
           <div className="cur_prog_rt-row header-row">
             <div className="boss-name">Boss</div>
-            <div className="kill-tracker title">{`${getKillCount(latestRaid.bosses, 'lfr')}/${
-              latestRaid.bosses.length
-            }`}</div>
+            <div className="kill-tracker title">{`${lrfKillCount}/${latestRaid.bosses.length}`}</div>
             <div className="kill-tracker title">{`${getKillCount(latestRaid.bosses, 'normal')}/${
               latestRaid.bosses.length
             }`}</div>
