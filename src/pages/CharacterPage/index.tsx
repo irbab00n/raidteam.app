@@ -56,7 +56,7 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
     characterName: characterName.toLowerCase(),
     realmSlug: realmSlug,
   };
-  console.log('what is the curent api url: ', process.env.RAIDTEAM_API_URL);
+  console.log('what is the curent api url: ', process.env.REACT_APP_RAIDTEAM_API_URL);
   let apiLink =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:4000/blizzard/character'
