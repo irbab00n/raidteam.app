@@ -60,7 +60,7 @@ const ItemLevel = (props: ItemLevelProps) => {
           <h1 className={calculateStringColor(characterData.profile.average_item_level)}>
             {characterData.profile.average_item_level}
           </h1>
-          <span className="item-level-label">Equipped</span>
+          <span className="item-level-label">Average</span>
         </div>
       </div>
     </DisplayContainer>

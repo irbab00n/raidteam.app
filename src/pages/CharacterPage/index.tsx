@@ -18,37 +18,26 @@ interface CharacterPageProps {
   match: object;
 }
 
-interface CharacterRequest {
-  characterName: string;
-  realmSlug: string;
-}
+// interface CharacterRequest {
+//   characterName: string;
+//   realmSlug: string;
+// }
 
 const { useState } = React;
 
-// achievements
-// appearance
-// equipment
-// character-media
-// pvp-bracket/{pvpBracket}
-// pvp-summary
-// specializations
-// statistics
-// titles
-// mythic-keystone-profile
-// mythic-keystone-profile/season/{seasonId}
-const characterEndpoints = [
-  'achievements',
-  'appearance',
-  'equipment',
-  'character-media',
-  // 'pvp-bracket/{pvpBracket}',
-  'pvp-summary',
-  'specializations',
-  'statistics',
-  'titles',
-  'mythic-keystone-profile',
-  // 'mythic-keystone-profile/season/{seasonId}',
-];
+// const characterEndpoints = [
+//   'achievements',
+//   'appearance',
+//   'equipment',
+//   'character-media',
+//   // 'pvp-bracket/{pvpBracket}',
+//   'pvp-summary',
+//   'specializations',
+//   'statistics',
+//   'titles',
+//   'mythic-keystone-profile',
+//   // 'mythic-keystone-profile/season/{seasonId}',
+// ];
 
 const findRealmSlug = target => {
   const extractedRealms = realms['en-US'];
@@ -61,7 +50,7 @@ const findRealmSlug = target => {
 };
 
 const searchForCharacter = (characterName: string, realmSlug: string) => {
-  console.log('Running searchForCharacter method: ', characterName, realmSlug);
+  // console.log('Running searchForCharacter method: ', characterName, realmSlug);
   let params = {
     characterName: characterName.toLowerCase(),
     realmSlug: realmSlug,
@@ -87,13 +76,6 @@ const CharacterPage = (props: CharacterPageProps) => {
       // console.log(`Couldn't find the realm for the target you searched for: `, realmName);
     }
   };
-
-  // console.log('match on Character Page: ', match);
-  // console.log('current character name: ', characterName);
-  // console.log('current realm name: ', realmName);
-
-  // text input to filter a list of realms by the term
-  // on select change the realmName slug
 
   return (
     <div id="character-page">
