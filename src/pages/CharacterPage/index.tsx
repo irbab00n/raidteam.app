@@ -60,7 +60,7 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
   let apiLink =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:4000/blizzard/character'
-      : `${process.env.RAIDTEAM_API_URL}/blizzard/character`;
+      : `${process.env.REACT_APP_RAIDTEAM_API_URL}/blizzard/character`;
   return axios.get(apiLink || '', { params });
 };
 
