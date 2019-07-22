@@ -12,6 +12,7 @@
   // background-color: $azerite-blue-600;
   background-color: $ne-gray-1-dark;
   color: $wow-gold;
+  // color: $white;
   height: 120px;
   padding: 20px;
 }
@@ -37,9 +38,10 @@
 .cd-character-image {
   background-color: #1b1d23;
   background-size: cover !important;
-  height: 50vh;
+  min-height: 50vh;
+  height: calc(100% - 120px);
 
   @include respond-to-breakpoint(1060px) {
-    height: 80vh;
+    min-height: 80vh;
   }
 }

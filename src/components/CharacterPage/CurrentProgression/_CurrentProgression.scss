@@ -1,0 +1,57 @@
+@import '../../../sass/app-dimensions';
+@import '../../../sass/colors';
+@import '../../../sass/mixins/flexbox';
+
+.cur_prog-wrapper {
+  @include flex;
+  @include flex-column;
+  // padding: 20px;
+
+  & > * {
+    margin: 0; // reset all the margin for children elements
+  }
+}
+
+.cur_prog-raid-table {
+  @include flex;
+  @include flex-column;
+  width: 100%;
+}
+
+.cur_prog-raid-title {
+  color: $white !important;
+}
+
+.cur_prog_rt-row {
+  @include flex;
+  @include flex-wrap(nowrap);
+  // background-color: $ne-gray-2-dark;
+  height: 48px;
+  padding: 0px 20px;
+  width: 100%;
+
+  &.header-row {
+    background-color: $ne-gray-1-dark;
+  }
+
+  & > .boss-name {
+    @include flex;
+    @include align-items(center);
+    color: $wow-gold;
+    height: 100%;
+    min-width: 300px;
+  }
+
+  & > .kill-tracker {
+    @include flex;
+    @include align-items(center);
+    @include justify-center;
+    color: $white;
+    height: 100%;
+    width: 100%;
+
+    &.title {
+      color: $wow-gold;
+    }
+  }
+}

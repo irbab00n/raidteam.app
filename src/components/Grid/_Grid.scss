@@ -23,6 +23,10 @@
     @include justify-center;
   }
 
+  &.column {
+    @include flex-column;
+  }
+
   &.full {
     width: 100%;
   }

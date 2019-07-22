@@ -46,7 +46,7 @@ const ItemLevel = (props: ItemLevelProps) => {
 
   return (
     <DisplayContainer>
-      <DisplayHeader>
+      <DisplayHeader className="blue">
         <h4>Item Level</h4>
       </DisplayHeader>
       <div className="item-level-row">

@@ -14,9 +14,16 @@
 .cd_display-header {
   @include flex;
   @include align-items(center);
-  background-color: $ne-gray-1-dark;
   color: $wow-gold;
   padding: 20px;
   height: 60px;
   width: 100%;
+
+  &.blue {
+    background-color: $azerite-blue-600;
+  }
+
+  &.dark-gray {
+    background-color: $ne-gray-1-dark;
+  }
 }

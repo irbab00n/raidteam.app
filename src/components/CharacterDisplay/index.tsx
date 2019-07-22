@@ -12,7 +12,8 @@ const CharacterDisplay = (props: CharacterDisplayProps) => {
 
   let characterURL = characterData.media.render_url;
   let characterStyle = {
-    background: `url(${characterURL}) center no-repeat`,
+    background: `url(${characterURL})no-repeat`,
+    backgroundPosition: '50% 40%',
     backgroundSize: 'cover',
   };
 

@@ -10,6 +10,7 @@ import CharacterDisplay from '../../components/CharacterDisplay';
 // import DisplayContainer from '../../components/CharacterPage/DisplayContainer';
 // import DisplayHeader from '../../components/CharacterPage/DisplayHeader';
 
+import CurrentProgression from '../../components/CharacterPage/CurrentProgression';
 import ItemLevel from '../../components/CharacterPage/ItemLevel';
 
 import realms from '../../lib/realms';
@@ -126,8 +127,9 @@ const CharacterPage = (props: CharacterPageProps) => {
           </GridItem>
         )}
         {characterData !== null && (
-          <GridItem size="half">
+          <GridItem size="half" column>
             <ItemLevel characterData={characterData} />
+            <CurrentProgression characterData={characterData} />
           </GridItem>
         )}
         {characterData !== null && (
