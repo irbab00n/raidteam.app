@@ -1,0 +1,47 @@
+@import '../../sass/app-responsive';
+@import '../../sass/colors';
+@import '../../sass/mixins/box-shadow';
+@import '../../sass/mixins/flexbox';
+@import '../../sass/mixins/transition';
+
+#character-display {
+  width: 100%;
+}
+
+.cd_header-wrapper {
+  // background-color: $azerite-blue-600;
+  background-color: $ne-gray-1-dark;
+  color: $wow-gold;
+  // color: $white;
+  height: 120px;
+  padding: 20px;
+}
+
+.cd_header-row {
+  @include flex;
+  @include align-items(center);
+  height: 50%;
+
+  & > h1 {
+    font-size: 1.4em;
+  }
+
+  & > h4 {
+    font-size: 1em;
+  }
+
+  & > h5 {
+    font-size: 0.9em;
+  }
+}
+
+.cd-character-image {
+  background-color: #1b1d23;
+  background-size: cover !important;
+  min-height: 50vh;
+  height: calc(100% - 120px);
+
+  @include respond-to-breakpoint(1060px) {
+    min-height: 80vh;
+  }
+}

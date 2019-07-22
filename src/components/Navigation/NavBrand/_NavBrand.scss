@@ -14,12 +14,14 @@
   text-decoration: none;
 
   &:hover {
-    background-color: $black-opaque-70;
+    background-color: $white-opaque-10;
     color: $wow-gold-hover;
+    -webkit-filter: saturate(200%);
+    filter: saturate(200%);
   }
 
   &:active {
-    background-color: $black-opaque-100;
+    background-color: $white-opaque-20;
     color: $wow-gold-active;
   }
 }
