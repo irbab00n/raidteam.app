@@ -16,6 +16,7 @@
   @include flex;
   @include flex-column;
   width: 100%;
+  padding-bottom: 10px;
 }
 
 .cur_prog-raid-title {
@@ -47,11 +48,70 @@
     @include align-items(center);
     @include justify-center;
     color: $white;
+    font-size: 16px;
     height: 100%;
     width: 100%;
+
+    & > progress[value] {
+      /* Reset the default appearance */
+      -webkit-appearance: none;
+      appearance: none;
+      height: 20px;
+      padding: 0px 10px;
+      width: 100%;
+
+      &::-webkit-progress-bar {
+        background-color: $ne-gray-2-dark;
+      }
+
+      &.common::-webkit-progress-value {
+        background-color: $wow-common;
+        opacity: 0.8;
+      }
+
+      &.uncommon::-webkit-progress-value {
+        background-color: $wow-uncommon;
+        opacity: 0.8;
+      }
+
+      &.rare::-webkit-progress-value {
+        background-color: $wow-rare;
+        opacity: 0.8;
+      }
+
+      &.epic::-webkit-progress-value {
+        background-color: $wow-epic;
+        opacity: 0.8;
+      }
+
+      &.legendary::-webkit-progress-value {
+        background-color: $wow-legendary;
+        opacity: 0.8;
+      }
+    }
 
     &.title {
       color: $wow-gold;
     }
   }
+}
+
+.cp_common {
+  color: $wow-common !important;
+}
+
+.cp_uncommon {
+  color: $wow-uncommon !important;
+}
+
+.cp_rare {
+  color: $wow-rare !important;
+}
+
+.cp_epic {
+  color: $wow-epic !important;
+}
+
+.cp_legendary {
+  color: $wow-legendary !important;
 }
