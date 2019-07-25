@@ -138,9 +138,7 @@ const CharacterPage = (props: CharacterPageProps) => {
           </GridItem>
         )}
         {characterData !== null && (
-          <GridItem size="full">
-            <ItemLevel characterData={characterData} />
-          </GridItem>
+          <GridItem size="full">{/* <ItemLevel characterData={characterData} /> */}</GridItem>
         )}
       </GridWrapper>
     </div>

@@ -5,6 +5,8 @@
 .cur_prog-wrapper {
   @include flex;
   @include flex-column;
+  text-shadow: 0px 0px 4px #000000;
+
   // padding: 20px;
 
   & > * {
@@ -16,7 +18,6 @@
   @include flex;
   @include flex-column;
   width: 100%;
-  padding-bottom: 10px;
 }
 
 .cur_prog-raid-title {
@@ -31,8 +32,16 @@
   padding: 0px 20px;
   width: 100%;
 
+  &:last-of-type {
+    margin-bottom: 20px;
+  }
+
   &.header-row {
     background-color: $ne-gray-1-dark;
+
+    &:last-of-type {
+      margin-bottom: 20px;
+    }
   }
 
   & > .boss-name {
@@ -48,9 +57,29 @@
     @include align-items(center);
     @include justify-center;
     color: $white;
-    font-size: 16px;
+    // font-size: 20px;
     height: 100%;
     width: 100%;
+
+    &.common {
+      color: $wow-common !important;
+    }
+
+    &.uncommon {
+      color: $wow-uncommon !important;
+    }
+
+    &.rare {
+      color: $wow-rare !important;
+    }
+
+    &.epic {
+      color: $wow-epic !important;
+    }
+
+    &.legendary {
+      color: $wow-legendary !important;
+    }
 
     & > progress[value] {
       /* Reset the default appearance */
@@ -94,24 +123,4 @@
       color: $wow-gold;
     }
   }
-}
-
-.cp_common {
-  color: $wow-common !important;
-}
-
-.cp_uncommon {
-  color: $wow-uncommon !important;
-}
-
-.cp_rare {
-  color: $wow-rare !important;
-}
-
-.cp_epic {
-  color: $wow-epic !important;
-}
-
-.cp_legendary {
-  color: $wow-legendary !important;
 }

@@ -11,7 +11,7 @@ interface ItemLevelProps {
 const ItemLevel = (props: ItemLevelProps) => {
   const { characterData } = props;
   const rangeMIN = 400;
-  const rangeMAX = 450;
+  const rangeMAX = 440;
 
   const calculateStringColor = ilvl => {
     if (ilvl < rangeMIN) {

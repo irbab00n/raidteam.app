@@ -6,7 +6,7 @@
 .cd_display-container {
   @include flex;
   @include flex-column;
-  @include box-shadow-inset(0px, 0px, 20px, 4px, $black-opaque-30);
+  @include box-shadow-inset(0px, 0px, 6px, 4px, $black-opaque-20);
   background-color: $azerite-blue-900;
   width: 100%;
 }
@@ -14,6 +14,7 @@
 .cd_display-header {
   @include flex;
   @include align-items(center);
+  @include box-shadow(0px, 2px, 6px, 2px, $black-opaque-20);
   color: $wow-gold;
   padding: 20px;
   height: 60px;

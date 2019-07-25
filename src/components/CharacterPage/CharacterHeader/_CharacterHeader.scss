@@ -1,5 +1,6 @@
 @import '../../../sass/app-dimensions';
 @import '../../../sass/colors';
+@import '../../../sass/mixins/box-shadow';
 @import '../../../sass/mixins/flexbox';
 
 #character-header {
@@ -8,6 +9,7 @@
   background-color: $azerite-blue-500;
   height: $navigation-height;
   padding: 0px 20px;
+  // border-bottom: 1px solid $black-opaque-80;
 }
 
 .ch_container {

@@ -2,38 +2,53 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface ProgressBarProps {
-  backgroundColor?: string;
-  className?: string;
-  children?: any;
-  borderColor?: string;
-  borderStyle?: string;
-  borderWidth?: string;
-  height?: string;
-  margin?: string;
-  percentage?: string;
+  label?: any;
 }
 
-// wrapper
-const ProgressBarWrapper = styled.div`
-  background-color: ${(props: ProgressBarProps) =>
-    props.backgroundColor ? props.backgroundColor : '#72b645'};
-  background-size: ${(props: ProgressBarProps) =>
-    props.percentage ? props.percentage : '0%'} 100%;
-  background-repeat: no-repeat;
-
-  border-color: ${(props: ProgressBarProps) => (props.borderColor ? props.borderColor : '#a2a5ac')}
-  border-style: ${(props: ProgressBarProps) => (props.borderStyle ? props.borderStyle : 'solid')}
-  border-width: ${(props: ProgressBarProps) => (props.borderWidth ? props.borderWidth : '1px')}
-
-  height: ${(props: ProgressBarProps) => (props.height ? props.height : '20px')};
-
-  margin: ${(props: ProgressBarProps) => (props.margin ? props.margin : '0px')};
-
+const ProgressBar = styled.progress`
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  padding: 0px 10px;
   width: 100%;
-`;
 
-const ProgressBar = (props: ProgressBarProps) => (
-  <ProgressBarWrapper {...props}>{props.children}</ProgressBarWrapper>
-);
+  &::-webkit-progress-bar {
+    background-color: $ne-gray-2-dark;
+  }
+
+  &.common::-webkit-progress-value {
+    background-color: #ffffff;
+    opacity: 0.8;
+  }
+
+  &.uncommon::-webkit-progress-value {
+    background-color: #1eff00;
+    opacity: 0.8;
+  }
+
+  &.rare::-webkit-progress-value {
+    background-color: #0070dd;
+    opacity: 0.8;
+  }
+
+  &.epic::-webkit-progress-value {
+    background-color: #a335ee;
+    opacity: 0.8;
+  }
+
+  &.legendary::-webkit-progress-value {
+    background-color: #ff8000;
+    opacity: 0.8;
+  }
+
+  &::-webkit-progress-value {
+    &::before {
+      content: ${(props: ProgressBarProps) => (props.label ? props.label : '')};
+      position: absolute;
+      right: 0;
+      top: -125%;
+    }
+  }
+`;
 
 export default ProgressBar;
