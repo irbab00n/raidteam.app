@@ -73,13 +73,7 @@ const TextInputWrapper = styled.div`
 // Supplied with will set the width of the parent container.  The width of the textbox will respond based on the presence or non-pressence of additional elements to the left or right
 
 const Text = (props: TextProps) => {
-  const {
-    leftElement,
-    rightElement,
-    onChange: changeHandler = () => {},
-    placeholder,
-    value,
-  } = props;
+  const { leftElement, rightElement, placeholder, value } = props;
 
   const determineBorderRadius = (left, right, props) => {
     if (props.borderRadius) {

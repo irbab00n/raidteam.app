@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { Router, Route, Switch } from 'react-router';
 import { isMobile } from 'react-device-detect';
 import { createBrowserHistory } from 'history';
@@ -23,6 +23,7 @@ const RaidPage = lazy(() => import('./pages/RaidPage'));
 export const appHistory = createBrowserHistory();
 
 const App = () => {
+  const [characterData, setCharacterData] = useState<{ [key: string]: any } | null>(null);
   const features = [
     {
       name: 'Character',
@@ -74,7 +75,11 @@ const App = () => {
             path="/character"
             render={({ match }) => (
               <Suspense fallback={<div>Loading</div>}>
-                <CharacterPage match={match} />
+                <CharacterPage
+                  match={match}
+                  characterData={characterData}
+                  setCharacterData={setCharacterData}
+                />
               </Suspense>
             )}
           />
