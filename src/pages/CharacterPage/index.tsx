@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
+import { appHistory } from '../../App';
 import './_CharacterPage.scss';
 
 import { CharacterHeader } from '../../components/CharacterPage';
@@ -8,8 +9,6 @@ import { Text } from '../../components/Inputs';
 import { PrimaryButton } from '../../components/Buttons';
 import { GridWrapper, GridItem } from '../../components/Grid';
 import CharacterDisplay from '../../components/CharacterDisplay';
-// import DisplayContainer from '../../components/CharacterPage/DisplayContainer';
-// import DisplayHeader from '../../components/CharacterPage/DisplayHeader';
 
 import CurrentProgression from '../../components/CharacterPage/CurrentProgression';
 import ItemLevel from '../../components/CharacterPage/ItemLevel';
@@ -34,7 +33,6 @@ const findRealmSlug = (target: string) => {
 };
 
 const searchForCharacter = (characterName: string, realmSlug: string) => {
-  // console.log('Running searchForCharacter method: ', characterName, realmSlug);
   let params = {
     characterName: characterName.toLowerCase(),
     realmSlug: realmSlug,
@@ -47,32 +45,23 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
 };
 
 const CharacterPage = (props: CharacterPageProps) => {
-  const parsedSearch = queryString.parse(window.location.search);
-
-  const _initialCharacterName = parsedSearch.character || '';
-  const _initialRealmName = parsedSearch.realm || '';
-
   const [searchFailed, setSearchFailed] = useState<any>(false);
   const [searchFailedMessage, setSearchFailedMessage] = useState<any>('');
   const [searchingForCharacter, setSearchingForCharacter] = useState<any>(false);
-  const [characterName, setCharacterName] = useState<any>(_initialCharacterName);
-  const [realmName, setRealmName] = useState<any>(_initialRealmName);
-  const { match, characterData, setCharacterData } = props;
+  const [characterName, setCharacterName] = useState<any>('');
+  const [realmName, setRealmName] = useState<any>('');
+  const { characterData, setCharacterData } = props;
 
-  console.log('parsedSearch from query string: ', parsedSearch);
-  console.log('match object on character page: ', match);
-
-  const characterSearch = () => {
-    console.log('running character search');
+  const characterSearch = (character: any, realm: any) => {
     setSearchFailed(false);
     setSearchingForCharacter(true);
-    let realmSlug = findRealmSlug(realmName);
+    let realmSlug = findRealmSlug(realm);
     if (realmSlug !== null) {
-      searchForCharacter(characterName, realmSlug)
+      searchForCharacter(character, realmSlug)
         .then(result => {
           setSearchingForCharacter(false);
           setCharacterData(result.data);
-          console.log('result from search for character: ', result.data);
+          // console.log('result from search for character: ', result.data);
         })
         .catch(error => {
           setSearchingForCharacter(false);
@@ -93,19 +82,23 @@ const CharacterPage = (props: CharacterPageProps) => {
 
   const handleCharacterSearch = e => {
     e.preventDefault();
-    characterSearch();
+    appHistory.push(
+      `${window.location.pathname}?${queryString.stringify({
+        character: characterName,
+        realm: realmName,
+      })}`
+    );
   };
 
+  // if the search changes, we want to register that in the state and launch the query
   useEffect(() => {
-    console.log('UseEffect running on characterPage');
-    if (characterName !== '' && characterData === null) {
-      characterSearch();
+    let { character, realm } = queryString.parse(window.location.search);
+    if (character) setCharacterName(character);
+    if (realm) setRealmName(realm);
+    if (character && realm) {
+      characterSearch(character, realm);
     }
-
-    return () => {
-      console.log('Cleaning up CharacterPage');
-    };
-  }, [characterData]);
+  }, [window.location.search]);
 
   return (
     <div id="character-page">
