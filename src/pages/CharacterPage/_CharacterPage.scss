@@ -15,3 +15,12 @@
 .cp_header-text {
   color: $wow-gold;
 }
+
+.cp_no-character-prompt {
+  @include flex;
+  @include align-items(center);
+  @include justify-center;
+  color: $wow-gold;
+  height: calc(100vh - 120px);
+  width: 100%;
+}
