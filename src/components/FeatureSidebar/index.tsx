@@ -15,16 +15,16 @@ interface FeatureSidebarProps {
 }
 
 const findIndexOfCurrentEndpoint = (pathname, features) => {
-  console.log('pathname to test: ', pathname);
-  console.log('features to test: ', features);
+  // console.log('pathname to test: ', pathname);
+  // console.log('features to test: ', features);
   let currentIndex = 0;
   for (currentIndex; currentIndex < features.length; currentIndex++) {
-    console.log('looking at endpoint: ', features[currentIndex].endpoint);
+    // console.log('looking at endpoint: ', features[currentIndex].endpoint);
     if (pathname.includes(features[currentIndex].endpoint)) {
       break;
     }
   }
-  console.log('current index: ', currentIndex);
+  // console.log('current index: ', currentIndex);
   return currentIndex;
 };
 

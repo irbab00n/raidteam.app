@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './_CharacterPage.scss';
 
@@ -18,30 +18,11 @@ import realms from '../../lib/realms';
 
 interface CharacterPageProps {
   match: object;
+  characterData: object | null;
+  setCharacterData: Function;
 }
 
-// interface CharacterRequest {
-//   characterName: string;
-//   realmSlug: string;
-// }
-
-const { useState } = React;
-
-// const characterEndpoints = [
-//   'achievements',
-//   'appearance',
-//   'equipment',
-//   'character-media',
-//   // 'pvp-bracket/{pvpBracket}',
-//   'pvp-summary',
-//   'specializations',
-//   'statistics',
-//   'titles',
-//   'mythic-keystone-profile',
-//   // 'mythic-keystone-profile/season/{seasonId}',
-// ];
-
-const findRealmSlug = target => {
+const findRealmSlug = (target: string) => {
   const extractedRealms = realms['en-US'];
   for (let i = 0; i < extractedRealms.length; i++) {
     if (extractedRealms[i].name === target) {
@@ -65,17 +46,18 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
 };
 
 const CharacterPage = (props: CharacterPageProps) => {
-  const [characterData, setCarachterData] = useState<any | null>(null);
   const [characterName, setCharacterName] = useState('');
   const [realmName, setRealmName] = useState('');
-  const { match } = props;
+  const { match, characterData, setCharacterData } = props;
+
+  console.log('match object on character page: ', match);
 
   const handleCharacterSearch = e => {
     e.preventDefault();
     let realmSlug = findRealmSlug(realmName);
     if (realmSlug !== null) {
       searchForCharacter(characterName, realmSlug).then(result => {
-        setCarachterData(result.data);
+        setCharacterData(result.data);
         console.log('result from search for character: ', result.data);
       });
     } else {

@@ -3,7 +3,7 @@ import './_CurrentProgression.scss';
 
 import DisplayContainer from '../DisplayContainer';
 import DisplayHeader from '../DisplayHeader';
-import ProgressBar from '../../ProgressBar';
+// import ProgressBar from '../../ProgressBar';
 import CurrentProgressionHeader from './CurrentProgressionHeader';
 
 import eternalPalaceImage from '../../../assets/raid_media/eternal-palace.jpg';
@@ -15,14 +15,14 @@ interface CurrentProgressionProps {
 const CurrentProgression = (props: CurrentProgressionProps) => {
   const { characterData } = props;
 
-  console.log('character progression data: ', characterData.progression.raids);
+  // console.log('character progression data: ', characterData.progression.raids);
 
   let latestRaid =
     characterData.progression && // if the progression property exists on the character data
     characterData.progression.raids && // if the raids exist on the progression object
     characterData.progression.raids[characterData.progression.raids.length - 1]; // grab the last entry out of the raids array
 
-  console.log('latest raid the character has progressed through: ', latestRaid);
+  // console.log('latest raid the character has progressed through: ', latestRaid);
 
   /*
     bosses: (8) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]

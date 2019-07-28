@@ -14,7 +14,7 @@ const CurrentProgressionHeader = (props: CurrentProgressionHeaderProps) => {
   };
 
   const chooseProgressColor = percentage => {
-    console.log('percentage: ', percentage);
+    // console.log('percentage: ', percentage);
     if (percentage >= 0 && percentage <= 25) {
       return 'common';
     }
