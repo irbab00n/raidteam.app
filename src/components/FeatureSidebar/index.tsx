@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import './_FeatureSidebar.scss';
 
 import Link from '../Link';
@@ -11,9 +11,8 @@ interface FeatureConfig {
 
 interface FeatureSidebarProps {
   features: FeatureConfig[];
+  isMobile?: boolean;
 }
-
-const { useState } = React;
 
 const findIndexOfCurrentEndpoint = (pathname, features) => {
   console.log('pathname to test: ', pathname);

@@ -3,6 +3,10 @@ import './_CurrentProgression.scss';
 
 import DisplayContainer from '../DisplayContainer';
 import DisplayHeader from '../DisplayHeader';
+import ProgressBar from '../../ProgressBar';
+import CurrentProgressionHeader from './CurrentProgressionHeader';
+
+import eternalPalaceImage from '../../../assets/raid_media/eternal-palace.jpg';
 
 interface CurrentProgressionProps {
   characterData: any;
@@ -58,21 +62,60 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
     }, 0);
   };
 
+  const chooseKillCountColor = kills => {
+    if (kills === 0) {
+      return 'common';
+    }
+    if (kills > 0 && kills <= 3) {
+      return 'uncommon';
+    }
+    if (kills >= 4 && kills <= 6) {
+      return 'rare';
+    }
+    if (kills >= 7 && kills <= 9) {
+      return 'epic';
+    }
+    if (kills >= 10) {
+      return 'legendary';
+    }
+    return 'poor';
+  };
+
   const buildBossRows = bosses => {
     return bosses.map((boss, index) => {
       return (
         <div className="cur_prog_rt-row" key={`current-prog-row-${index}`}>
           <div className="boss-name">{boss.name}</div>
-          <div className="kill-tracker">{boss.lfrKills}</div>
-          <div className="kill-tracker">{boss.normalKills}</div>
-          <div className="kill-tracker">{boss.heroicKills}</div>
-          <div className="kill-tracker">{boss.mythicKills}</div>
+          <div className={`kill-tracker ${chooseKillCountColor(boss.lfrKills)}`}>
+            {boss.lfrKills}
+          </div>
+          <div className={`kill-tracker ${chooseKillCountColor(boss.normalKills)}`}>
+            {boss.normalKills}
+          </div>
+          <div className={`kill-tracker ${chooseKillCountColor(boss.heroicKills)}`}>
+            {boss.heroicKills}
+          </div>
+          <div className={`kill-tracker ${chooseKillCountColor(boss.mythicKills)}`}>
+            {boss.mythicKills}
+          </div>
         </div>
       );
     });
   };
 
-  const lrfKillCount = getKillCount(latestRaid.bosses, 'lfr');
+  // const lfrKillCount =
+  // const normalKillCount = ;
+  // const heroicKillCount = ;
+  // const mythicKillCount = ;
+  // const bossCount = ;
+
+  let killCounts = {
+    lfr: getKillCount(latestRaid.bosses, 'lfr'),
+    normal: getKillCount(latestRaid.bosses, 'normal'),
+    heroic: getKillCount(latestRaid.bosses, 'heroic'),
+    mythic: getKillCount(latestRaid.bosses, 'mythic'),
+    bossCount: latestRaid.bosses.length,
+  };
 
   return (
     <DisplayContainer id="current-progression">
@@ -81,26 +124,11 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
       </DisplayHeader>
       <div className="cur_prog-wrapper">
         <div className="cur_prog-raid-table">
-          <DisplayHeader className="dark-gray cur_prog_rt-row">
-            <h4 className="boss-name cur_prog-raid-title">{latestRaid.name}</h4>
-            <div className="kill-tracker title">LFR</div>
-            <div className="kill-tracker title">N</div>
-            <div className="kill-tracker title">H</div>
-            <div className="kill-tracker title">M</div>
-          </DisplayHeader>
-          <div className="cur_prog_rt-row header-row">
-            <div className="boss-name">Boss</div>
-            <div className="kill-tracker title">{`${lrfKillCount}/${latestRaid.bosses.length}`}</div>
-            <div className="kill-tracker title">{`${getKillCount(latestRaid.bosses, 'normal')}/${
-              latestRaid.bosses.length
-            }`}</div>
-            <div className="kill-tracker title">{`${getKillCount(latestRaid.bosses, 'heroic')}/${
-              latestRaid.bosses.length
-            }`}</div>
-            <div className="kill-tracker title">{`${getKillCount(latestRaid.bosses, 'mythic')}/${
-              latestRaid.bosses.length
-            }`}</div>
-          </div>
+          <CurrentProgressionHeader
+            instanceTitle={latestRaid.name}
+            instanceImage={eternalPalaceImage}
+            killCounts={killCounts}
+          />
           {buildBossRows(latestRaid.bosses)}
         </div>
       </div>
@@ -109,3 +137,63 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
 };
 
 export default CurrentProgression;
+
+// {/* <DisplayHeader className="dark-gray cur_prog_rt-row">
+//   <h4 className="boss-name cur_prog-raid-title">{latestRaid.name}</h4>
+//   <div className="kill-tracker title">LFR</div>
+//   <div className="kill-tracker title">Normal</div>
+//   <div className="kill-tracker title">Heroic</div>
+//   <div className="kill-tracker title">Mythic</div>
+// </DisplayHeader>
+// <div className="cur_prog_rt-row header-row">
+//   <div className="boss-name">Progress</div>
+//   <div
+//     className={`kill-tracker ${chooseProgressColor(lfrProgressPercentage)}`}
+//   >{`${lfrKillCount}/${bossCount}`}</div>
+//   <div
+//     className={`kill-tracker ${chooseProgressColor(normalProgressPercentage)}`}
+//   >{`${normalKillCount}/${bossCount}`}</div>
+//   <div
+//     className={`kill-tracker ${chooseProgressColor(heroicProgressPercentage)}`}
+//   >{`${heroicKillCount}/${bossCount}`}</div>
+//   <div
+//     className={`kill-tracker ${chooseProgressColor(mythicProgressPercentage)}`}
+//   >{`${mythicKillCount}/${bossCount}`}</div>
+// </div>
+// <div className="cur_prog_rt-row header-row">
+//   <div className="boss-name"></div>
+//   <div className="kill-tracker">
+//     <progress
+//       className={chooseProgressColor(lfrProgressPercentage)}
+//       max="100"
+//       value={lfrProgressPercentage}
+//     />
+//   </div>
+//   <div className="kill-tracker">
+//     <progress
+//       className={chooseProgressColor(normalProgressPercentage)}
+//       max="100"
+//       value={normalProgressPercentage}
+//     />
+//     {/* <ProgressBar
+//       className={chooseProgressColor(normalProgressPercentage)}
+//       max="100"
+//       value={normalProgressPercentage}
+//       label={`${normalKillCount}/${bossCount}`}
+//     /> */}
+//   </div>
+//   <div className="kill-tracker">
+//     <progress
+//       className={chooseProgressColor(heroicProgressPercentage)}
+//       max="100"
+//       value={heroicProgressPercentage}
+//     />
+//   </div>
+//   <div className="kill-tracker">
+//     <progress
+//       className={chooseProgressColor(mythicProgressPercentage)}
+//       max="100"
+//       value={mythicProgressPercentage}
+//     />
+//   </div>
+// </div> */}

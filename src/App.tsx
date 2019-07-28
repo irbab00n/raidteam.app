@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Router, Route, Switch } from 'react-router';
+import { isMobile } from 'react-device-detect';
 import { createBrowserHistory } from 'history';
 import './_App.scss';
 
@@ -50,10 +51,14 @@ const App = () => {
       </Suspense>
       <Suspense
         fallback={
-          <RectangleGradientLoader height="calc(100vh - 60px)" width="60px" position="fixed" />
+          isMobile ? (
+            <RectangleGradientLoader height="60px" width="100%" position="fixed" />
+          ) : (
+            <RectangleGradientLoader height="calc(100vh - 60px)" width="60px" position="fixed" />
+          )
         }
       >
-        <FeatureSidebar features={features} />
+        <FeatureSidebar features={features} isMobile={isMobile} />
       </Suspense>
       <ContentPanel>
         <Switch>

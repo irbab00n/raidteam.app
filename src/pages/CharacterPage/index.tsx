@@ -12,6 +12,7 @@ import CharacterDisplay from '../../components/CharacterDisplay';
 
 import CurrentProgression from '../../components/CharacterPage/CurrentProgression';
 import ItemLevel from '../../components/CharacterPage/ItemLevel';
+import WarcraftLogs from '../../components/CharacterPage/WarcraftLogs';
 
 import realms from '../../lib/realms';
 
@@ -56,7 +57,6 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
     characterName: characterName.toLowerCase(),
     realmSlug: realmSlug,
   };
-  console.log('what is the curent api url: ', process.env.REACT_APP_RAIDTEAM_API_URL);
   let apiLink =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:4000/blizzard/character'
@@ -139,7 +139,7 @@ const CharacterPage = (props: CharacterPageProps) => {
         )}
         {characterData !== null && (
           <GridItem size="full">
-            <ItemLevel characterData={characterData} />
+            <WarcraftLogs characterData={characterData} />
           </GridItem>
         )}
       </GridWrapper>
