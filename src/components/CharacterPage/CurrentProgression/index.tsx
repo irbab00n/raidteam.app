@@ -62,25 +62,6 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
     }, 0);
   };
 
-  const chooseProgressColor = percentage => {
-    console.log('percentage: ', percentage);
-    if (percentage >= 0 && percentage <= 25) {
-      return 'common';
-    }
-    if (percentage >= 26 && percentage <= 49) {
-      return 'uncommon';
-    }
-    if (percentage >= 50 && percentage <= 74) {
-      return 'rare';
-    }
-    if (percentage >= 75 && percentage < 100) {
-      return 'epic';
-    }
-    if (percentage >= 100) {
-      return 'legendary';
-    }
-  };
-
   const chooseKillCountColor = kills => {
     if (kills === 0) {
       return 'common';
@@ -122,24 +103,18 @@ const CurrentProgression = (props: CurrentProgressionProps) => {
     });
   };
 
-  const lfrKillCount = getKillCount(latestRaid.bosses, 'lfr');
-  const normalKillCount = getKillCount(latestRaid.bosses, 'normal');
-  const heroicKillCount = getKillCount(latestRaid.bosses, 'heroic');
-  const mythicKillCount = getKillCount(latestRaid.bosses, 'mythic');
-
-  const bossCount = latestRaid.bosses.length;
-
-  const lfrProgressPercentage = (lfrKillCount / bossCount) * 100;
-  const normalProgressPercentage = (normalKillCount / bossCount) * 100;
-  const heroicProgressPercentage = (heroicKillCount / bossCount) * 100;
-  const mythicProgressPercentage = (mythicKillCount / bossCount) * 100;
+  // const lfrKillCount =
+  // const normalKillCount = ;
+  // const heroicKillCount = ;
+  // const mythicKillCount = ;
+  // const bossCount = ;
 
   let killCounts = {
-    lfr: lfrKillCount,
-    normal: normalKillCount,
-    heroic: heroicKillCount,
-    mythic: mythicKillCount,
-    bossCount,
+    lfr: getKillCount(latestRaid.bosses, 'lfr'),
+    normal: getKillCount(latestRaid.bosses, 'normal'),
+    heroic: getKillCount(latestRaid.bosses, 'heroic'),
+    mythic: getKillCount(latestRaid.bosses, 'mythic'),
+    bossCount: latestRaid.bosses.length,
   };
 
   return (
