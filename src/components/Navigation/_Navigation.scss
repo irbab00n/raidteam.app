@@ -1,15 +1,19 @@
 @import '../../sass/app-dimensions';
 @import '../../sass/colors';
+@import '../../sass/mixins/box-shadow';
 @import '../../sass/mixins/flexbox';
 
 nav {
   @include flex;
   @include align-items(center);
   @include justify-between;
+  @include box-shadow(2px, 2px, 4px, 2px, $black-opaque-40);
   background-color: $ne-gray-2-dark;
   height: $navigation-height;
+  position: relative;
   top: 0;
   width: 100%;
+  z-index: 10000;
 }
 
 .nav-container {

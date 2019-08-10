@@ -8,5 +8,6 @@
   height: calc(100vh - #{$navigation-height});
   margin-left: $feature-sidebar-width;
   overflow-y: scroll;
+  top: $navigation-height;
   z-index: -1;
 }
