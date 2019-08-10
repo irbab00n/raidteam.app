@@ -1,14 +1,17 @@
 @import '../../sass/app-dimensions';
 @import '../../sass/colors';
+@import '../../sass/mixins/box-shadow';
 @import '../../sass/mixins/flexbox';
 @import '../../sass/mixins/transition';
 
 #feature-sidebar {
-  background-color: $ne-gray-2;
+  @include box-shadow(2px, 0px, 4px, 0px, $black-opaque-20);
+  background-color: $azerite-purple-800;
   height: calc(100vh - #{$navigation-height});
   position: fixed;
   top: $navigation-height;
   width: $feature-sidebar-width;
+  z-index: 0;
 
   & > ul {
     @include flex;
@@ -23,22 +26,26 @@
     @include flex;
     @include align-items(center);
     @include justify-center;
-    @include transition(0.1s);
+    @include transition(0.2s);
     cursor: pointer;
     height: $feature-sidebar-width;
 
     &:hover {
-      background-color: $white-opaque-10;
+      // background-color: $white-opaque-10;
+      @include box-shadow-inset(0px, 0px, 2px, 1px, $white-opaque-10);
+      background-color: $azerite-purple-700;
       color: $azerite-blue-50;
     }
 
     &.selected {
-      background-color: $white-opaque-20;
+      @include box-shadow-inset(0px, 0px, 4px, 2px, $black-opaque-40);
+      background-color: $azerite-purple-600;
       color: $wow-gold;
     }
 
     &:active {
-      background-color: $white-opaque-30;
+      // background-color: $white-opaque-30;
+      background-color: $azerite-purple-900;
       color: $azerite-blue-600 !important;
     }
 

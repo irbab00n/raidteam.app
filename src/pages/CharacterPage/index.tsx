@@ -45,13 +45,14 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
 };
 
 const CharacterPage = (props: CharacterPageProps) => {
-  const [searchFailed, setSearchFailed] = useState<any>(false);
-  const [searchFailedMessage, setSearchFailedMessage] = useState<any>('');
-  const [searchingForCharacter, setSearchingForCharacter] = useState<any>(false);
+  const [searchFailed, setSearchFailed] = useState<boolean>(false);
+  const [characterSearchFailedMessage, setCharacterSearchFailedMessage] = useState<string>('');
+  const [searchingForCharacter, setSearchingForCharacter] = useState<boolean>(false);
   const [characterName, setCharacterName] = useState<any>('');
   const [realmName, setRealmName] = useState<any>('');
   const { characterData, setCharacterData } = props;
 
+  // Fetches character profile, equipment, and progression statistics
   const characterSearch = (character: any, realm: any) => {
     setSearchFailed(false);
     setSearchingForCharacter(true);
@@ -67,17 +68,21 @@ const CharacterPage = (props: CharacterPageProps) => {
           setSearchingForCharacter(false);
           setSearchFailed(true);
           console.error(error);
-          setSearchFailedMessage(
+          setCharacterSearchFailedMessage(
             `Something went wrong fetching character data.  Please try again...`
           );
         });
     } else {
       setSearchingForCharacter(false);
       setSearchFailed(true);
-      setSearchFailedMessage(
+      setCharacterSearchFailedMessage(
         `You didn't enter in a valid Realm name.  Yes, it has to be Capitol specific... for now.`
       );
     }
+  };
+
+  const warcraftLogsSearch = (character: any, realm: any) => {
+    // set warcraftLogsSearching true
   };
 
   const handleCharacterSearch = e => {
@@ -155,7 +160,7 @@ const CharacterPage = (props: CharacterPageProps) => {
         )}
         {searchFailed && (
           <div className="cp_no-character-prompt">
-            <div>{searchFailedMessage}</div>
+            <div>{characterSearchFailedMessage}</div>
           </div>
         )}
         {characterData !== null && (

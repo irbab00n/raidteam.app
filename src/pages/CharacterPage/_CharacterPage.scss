@@ -4,7 +4,7 @@
 @import '../../sass/mixins/transition';
 
 #character-page {
-  @include box-shadow-inset(0px, 0px, 10px, 4px, $black-opaque-70);
+  // @include box-shadow-inset(0px, 0px, 10px, 4px, $black-opaque-70);
   z-index: -1;
 }
 
