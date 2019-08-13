@@ -22,8 +22,12 @@ const RaidPage = lazy(() => import('./pages/RaidPage'));
 
 export const appHistory = createBrowserHistory();
 
-const App = () => {
+const App = (props: any) => {
+  // Character page data
   const [characterData, setCharacterData] = useState<{ [key: string]: any } | null>(null);
+  const [characterWarcraftLogs, setCharacterWarcraftLogs] = useState<{ [key: string]: any } | null>(
+    null
+  );
   const features = [
     {
       name: 'Character',

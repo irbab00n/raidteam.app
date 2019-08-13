@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import axios from 'axios';
 import queryString from 'query-string';
 import { appHistory } from '../../App';
 import './_CharacterPage.scss';
+
+// UI STATE
+import { mapDispatchToActions } from '../../utils/mapDispatchToActions';
+import * as uiActions from './uiActions';
+import uiReducer from './uiReducer';
+import { INITIAL_UI_STATE } from './uiInitialState';
 
 import { CharacterHeader } from '../../components/CharacterPage';
 import { Text } from '../../components/Inputs';
@@ -22,6 +28,7 @@ interface CharacterPageProps {
   setCharacterData: Function;
 }
 
+// Finds the realm slug for a given realm name
 const findRealmSlug = (target: string) => {
   const extractedRealms = realms['en-US'];
   for (let i = 0; i < extractedRealms.length; i++) {
@@ -32,11 +39,25 @@ const findRealmSlug = (target: string) => {
   return null;
 };
 
-const searchForCharacter = (characterName: string, realmSlug: string) => {
-  let params = {
-    characterName: characterName.toLowerCase(),
-    realmSlug: realmSlug,
-  };
+// Formats a characterName and realmSlug into an axios params object
+const createParams = (characterName: string, realmSlug) => ({
+  characterName: characterName.toLowerCase(),
+  realmSlug,
+});
+
+// Starts a request against the RaidTeam API to retrieve character rankings from Warcraft Logs
+const getRankingsForCharacter = (characterName: string, realmSlug: string) => {
+  let params = createParams(characterName, realmSlug);
+  let apiLink =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/warcraftlogs/rankings/character'
+      : `${process.env.REACT_APP_RAIDTEAM_API_URL}/warcraftlogs/rankings/character`;
+  return axios.get(apiLink || '', { params });
+};
+
+// Starts a request against the RaidTeam API to retireve character data from Blizzard
+const getCharacterDataFromBlizzard = (characterName: string, realmSlug: string) => {
+  let params = createParams(characterName, realmSlug);
   let apiLink =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:4000/blizzard/character'
@@ -45,47 +66,81 @@ const searchForCharacter = (characterName: string, realmSlug: string) => {
 };
 
 const CharacterPage = (props: CharacterPageProps) => {
-  const [searchFailed, setSearchFailed] = useState<boolean>(false);
-  const [characterSearchFailedMessage, setCharacterSearchFailedMessage] = useState<string>('');
-  const [searchingForCharacter, setSearchingForCharacter] = useState<boolean>(false);
+  // const [dataState, dataDispatch] = useReducer(dataReducer, INITIAL_DATA_STATE());
+  const [uiState, uiDispatch] = useReducer(uiReducer, INITIAL_UI_STATE());
+  const uiDispatchAction = mapDispatchToActions(uiDispatch, uiActions);
+
+  // Input Form state storage
   const [characterName, setCharacterName] = useState<any>('');
   const [realmName, setRealmName] = useState<any>('');
   const { characterData, setCharacterData } = props;
 
   // Fetches character profile, equipment, and progression statistics
-  const characterSearch = (character: any, realm: any) => {
-    setSearchFailed(false);
-    setSearchingForCharacter(true);
+  const getCharacterData = (character: any, realm: any) => {
+    uiDispatchAction.setCharacterDataFetched(false);
+    uiDispatchAction.setCharacterDataFetchFailed(false);
+    uiDispatchAction.setCharacterDataFetchFailedMessage('');
+    uiDispatchAction.setCharacterDataFetching(true);
     let realmSlug = findRealmSlug(realm);
     if (realmSlug !== null) {
-      searchForCharacter(character, realmSlug)
+      getCharacterDataFromBlizzard(character, realmSlug)
         .then(result => {
-          setSearchingForCharacter(false);
+          uiDispatchAction.setCharacterDataFetched(true);
           setCharacterData(result.data);
-          // console.log('result from search for character: ', result.data);
         })
         .catch(error => {
-          setSearchingForCharacter(false);
-          setSearchFailed(true);
+          uiDispatchAction.setCharacterDataFetchFailed(true);
           console.error(error);
-          setCharacterSearchFailedMessage(
+          uiDispatchAction.setCharacterDataFetchFailedMessage(
             `Something went wrong fetching character data.  Please try again...`
           );
         });
+      uiDispatchAction.setCharacterDataFetching(false);
     } else {
-      setSearchingForCharacter(false);
-      setSearchFailed(true);
-      setCharacterSearchFailedMessage(
+      uiDispatchAction.setCharacterDataFetching(false);
+      uiDispatchAction.setCharacterDataFetchFailed(true);
+      uiDispatchAction.setCharacterDataFetchFailedMessage(
         `You didn't enter in a valid Realm name.  Yes, it has to be Capitol specific... for now.`
       );
     }
   };
 
-  const warcraftLogsSearch = (character: any, realm: any) => {
-    // set warcraftLogsSearching true
+  // manages Warcraft Logs fetching state, and results handling
+  // pre-fetch hook
+  // success hook
+  // error hook
+  //
+  const getCharacterRankings = (character: any, realm: any) => {
+    uiDispatchAction.setCharacterRankingsFetched(false);
+    uiDispatchAction.setCharacterRankingsFetchFailed(false);
+    uiDispatchAction.setCharacterRankingsFetchFailedMessage('');
+    uiDispatchAction.setCharacterRankingsFetching(true);
+    let realmSlug = findRealmSlug(realm); // May refactoer this after we add in the select for the text input
+    if (realmSlug !== null) {
+      getRankingsForCharacter(character, realmSlug)
+        .then(result => {
+          uiDispatchAction.setCharacterRankingsFetched(true);
+          console.log('results from the Warcraft Logs search: ', result);
+        })
+        .catch(error => {
+          uiDispatchAction.setCharacterRankingsFetchFailed(true);
+          uiDispatchAction.setCharacterRankingsFetchFailedMessage(
+            `Something went wrong fetching warcraft logs character rankings.  Please try again...`
+          );
+          console.error(error);
+        });
+      uiDispatchAction.setCharacterRankingsFetching(false);
+    } else {
+      uiDispatchAction.setCharacterRankingsFetchFailed(true);
+      uiDispatchAction.setCharacterRankingsFetching(false);
+      uiDispatchAction.setCharacterRankingsFetchFailedMessage(
+        `You didn't enter in a valid Realm name.  Yes, it has to be Capitol specific... for now.`
+      );
+    }
   };
 
-  const handleCharacterSearch = e => {
+  // When the form is submitted, we prevent the page refreshing, while also pushing a new state to the applciation window
+  const handleCharacterFormSubmit = e => {
     e.preventDefault();
     appHistory.push(
       `${window.location.pathname}?${queryString.stringify({
@@ -101,7 +156,8 @@ const CharacterPage = (props: CharacterPageProps) => {
     if (character) setCharacterName(character);
     if (realm) setRealmName(realm);
     if (character && realm) {
-      characterSearch(character, realm);
+      getCharacterData(character, realm);
+      getCharacterRankings(character, realm);
     }
   }, [window.location.search]);
 
@@ -110,7 +166,7 @@ const CharacterPage = (props: CharacterPageProps) => {
       <CharacterHeader
         left={<span className="cp_header-text">Your Character</span>}
         right={
-          <form className="cp_character-search" onSubmit={e => handleCharacterSearch(e)}>
+          <form className="cp_character-search" onSubmit={e => handleCharacterFormSubmit(e)}>
             <Text
               value={characterName}
               placeholder="Character"
@@ -148,19 +204,19 @@ const CharacterPage = (props: CharacterPageProps) => {
         }
       />
       <GridWrapper>
-        {characterData === null && !searchingForCharacter && (
+        {characterData === null && !uiState.characterDataFetching && (
           <div className="cp_no-character-prompt">
             <h1>Find a Specific Raider</h1>
           </div>
         )}
-        {searchingForCharacter && (
+        {uiState.characterDataFetching && (
           <div className="cp_no-character-prompt">
             <h1>Loading...</h1>
           </div>
         )}
-        {searchFailed && (
+        {uiState.characterDataFetchFailed && (
           <div className="cp_no-character-prompt">
-            <div>{characterSearchFailedMessage}</div>
+            <div>{uiState.characterDataFetchFailedMessage}</div>
           </div>
         )}
         {characterData !== null && (

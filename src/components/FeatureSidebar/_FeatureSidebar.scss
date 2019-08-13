@@ -5,7 +5,7 @@
 @import '../../sass/mixins/transition';
 
 #feature-sidebar {
-  @include box-shadow(2px, 0px, 4px, 0px, $black-opaque-20);
+  @include box-shadow(2px, 0px, 4px, 0px, $black-opaque-40);
   background-color: $azerite-purple-800;
   height: calc(100vh - #{$navigation-height});
   position: fixed;
@@ -29,12 +29,13 @@
     @include transition(0.2s);
     cursor: pointer;
     height: $feature-sidebar-width;
+    color: $azerite-violet-400;
 
     &:hover {
       // background-color: $white-opaque-10;
       @include box-shadow-inset(0px, 0px, 2px, 1px, $white-opaque-10);
       background-color: $azerite-purple-700;
-      color: $azerite-blue-50;
+      color: $azerite-magenta-400;
     }
 
     &.selected {
@@ -46,7 +47,7 @@
     &:active {
       // background-color: $white-opaque-30;
       background-color: $azerite-purple-900;
-      color: $azerite-blue-600 !important;
+      color: $azerite-teal-50 !important;
     }
 
     & > a > label {
