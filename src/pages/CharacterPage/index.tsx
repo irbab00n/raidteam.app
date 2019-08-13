@@ -120,7 +120,7 @@ const CharacterPage = (props: CharacterPageProps) => {
       getRankingsForCharacter(character, realmSlug)
         .then(result => {
           uiDispatchAction.setCharacterRankingsFetched(true);
-          console.log('results from the Warcraft Logs search: ', result);
+          // console.log('results from the Warcraft Logs search: ', result);
         })
         .catch(error => {
           uiDispatchAction.setCharacterRankingsFetchFailed(true);
