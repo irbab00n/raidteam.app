@@ -15,12 +15,11 @@ import { Text } from '../../components/Inputs';
 import { PrimaryButton } from '../../components/Buttons';
 import { GridWrapper, GridItem } from '../../components/Grid';
 import CharacterDisplay from '../../components/CharacterDisplay';
-
 import CurrentProgression from '../../components/CharacterPage/CurrentProgression';
 import ItemLevel from '../../components/CharacterPage/ItemLevel';
 import WarcraftLogs from '../../components/CharacterPage/WarcraftLogs';
 
-import realms from '../../lib/realms';
+import { findRealmSlug } from '../../utils/findRealmSlug';
 
 interface CharacterPageProps {
   match: object;
@@ -28,19 +27,8 @@ interface CharacterPageProps {
   setCharacterData: Function;
 }
 
-// Finds the realm slug for a given realm name
-const findRealmSlug = (target: string) => {
-  const extractedRealms = realms['en-US'];
-  for (let i = 0; i < extractedRealms.length; i++) {
-    if (extractedRealms[i].name === target) {
-      return extractedRealms[i].slug;
-    }
-  }
-  return null;
-};
-
 // Formats a characterName and realmSlug into an axios params object
-const createParams = (characterName: string, realmSlug) => ({
+const createParams = (characterName: string, realmSlug: string) => ({
   characterName: characterName.toLowerCase(),
   realmSlug,
 });
@@ -105,11 +93,7 @@ const CharacterPage = (props: CharacterPageProps) => {
     }
   };
 
-  // manages Warcraft Logs fetching state, and results handling
-  // pre-fetch hook
-  // success hook
-  // error hook
-  //
+  // Fetches character rankings from Warcraft Logs
   const getCharacterRankings = (character: any, realm: any) => {
     uiDispatchAction.setCharacterRankingsFetched(false);
     uiDispatchAction.setCharacterRankingsFetchFailed(false);

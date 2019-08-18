@@ -3,7 +3,7 @@ import realms from '../lib/realms';
 // TODOS:  Make this a configurable variable exposed to the front end
 const region = 'en-US';
 
-const findRealmSlug = (target: string) => {
+export const findRealmSlug = (target: string) => {
   const extractedRealms = realms[region];
   for (let i = 0; i < extractedRealms.length; i++) {
     if (extractedRealms[i].name === target) {
@@ -12,5 +12,3 @@ const findRealmSlug = (target: string) => {
   }
   return null;
 };
-
-export default findRealmSlug;

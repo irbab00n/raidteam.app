@@ -45,6 +45,7 @@
     }
 
     &:active {
+      @include transition(0s);
       // background-color: $white-opaque-30;
       background-color: $azerite-purple-900;
       color: $azerite-teal-50 !important;
