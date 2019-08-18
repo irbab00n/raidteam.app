@@ -22,12 +22,9 @@ const RaidPage = lazy(() => import('./pages/RaidPage'));
 
 export const appHistory = createBrowserHistory();
 
-const App = (props: any) => {
+const App = () => {
   // Character page data
-  const [characterData, setCharacterData] = useState<{ [key: string]: any } | null>(null);
-  const [characterWarcraftLogs, setCharacterWarcraftLogs] = useState<{ [key: string]: any } | null>(
-    null
-  );
+  // TODO:  Instead of storing individual character data on the app level to prevent loss of data when the user navigates the page, instead we should look into storing a list of all the searches that the user has performed, and any time that they navigate back to the character page, it will retrieve the data for the last searched character
   const features = [
     {
       name: 'Character',
@@ -79,11 +76,7 @@ const App = (props: any) => {
             path="/character"
             render={({ match }) => (
               <Suspense fallback={<div>Loading</div>}>
-                <CharacterPage
-                  match={match}
-                  characterData={characterData}
-                  setCharacterData={setCharacterData}
-                />
+                <CharacterPage match={match} />
               </Suspense>
             )}
           />

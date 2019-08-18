@@ -4,7 +4,7 @@
 // set the key on the new storage object
 // equal to the function found at the key on the object of functions
 export const mapDispatchToActions = (
-  dispatch: React.Dispatch<Object>,
+  dispatch: React.Dispatch<any>,
   actions: { [key: string]: Function }
 ): { [key: string]: Function } => {
   let mappedActions = {};

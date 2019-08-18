@@ -1,9 +1,7 @@
 import uiTypes from './uiTypes';
 
-// will have to find a way to pass in the dispatch
-
 // CHARACTER DATA
-export const setCharacterDataFetching = (dispatch: any) => (flag: boolean) =>
+export const setCharacterDataFetching = (dispatch: React.Dispatch<any>) => (flag: boolean) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_DATA_FETCHING,
     payload: {
@@ -11,7 +9,7 @@ export const setCharacterDataFetching = (dispatch: any) => (flag: boolean) =>
     },
   });
 
-export const setCharacterDataFetched = (dispatch: any) => (flag: boolean) =>
+export const setCharacterDataFetched = (dispatch: React.Dispatch<any>) => (flag: boolean) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_DATA_FETCHED,
     payload: {
@@ -19,7 +17,7 @@ export const setCharacterDataFetched = (dispatch: any) => (flag: boolean) =>
     },
   });
 
-export const setCharacterDataFetchFailed = (dispatch: any) => (flag: boolean) =>
+export const setCharacterDataFetchFailed = (dispatch: React.Dispatch<any>) => (flag: boolean) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_DATA_FETCH_FAILED,
     payload: {
@@ -27,7 +25,9 @@ export const setCharacterDataFetchFailed = (dispatch: any) => (flag: boolean) =>
     },
   });
 
-export const setCharacterDataFetchFailedMessage = (dispatch: any) => (message: string) =>
+export const setCharacterDataFetchFailedMessage = (dispatch: React.Dispatch<any>) => (
+  message: string
+) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_DATA_FETCH_FAILED_MESSAGE,
     payload: {
@@ -36,7 +36,7 @@ export const setCharacterDataFetchFailedMessage = (dispatch: any) => (message: s
   });
 
 // CHARACTER RANKINGS
-export const setCharacterRankingsFetching = (dispatch: any) => (flag: boolean) =>
+export const setCharacterRankingsFetching = (dispatch: React.Dispatch<any>) => (flag: boolean) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_RANKINGS_FETCHING,
     payload: {
@@ -44,7 +44,7 @@ export const setCharacterRankingsFetching = (dispatch: any) => (flag: boolean) =
     },
   });
 
-export const setCharacterRankingsFetched = (dispatch: any) => (flag: boolean) =>
+export const setCharacterRankingsFetched = (dispatch: React.Dispatch<any>) => (flag: boolean) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_RANKINGS_FETCHED,
     payload: {
@@ -52,7 +52,7 @@ export const setCharacterRankingsFetched = (dispatch: any) => (flag: boolean) =>
     },
   });
 
-export const setCharacterRankingsFetchFailed = (dispatch: any) => (flag: boolean) =>
+export const setCharacterRankingsFetchFailed = (dispatch: React.Dispatch<any>) => (flag: boolean) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_RANKINGS_FETCH_FAILED,
     payload: {
@@ -60,7 +60,9 @@ export const setCharacterRankingsFetchFailed = (dispatch: any) => (flag: boolean
     },
   });
 
-export const setCharacterRankingsFetchFailedMessage = (dispatch: any) => (message: string) =>
+export const setCharacterRankingsFetchFailedMessage = (dispatch: React.Dispatch<any>) => (
+  message: string
+) =>
   dispatch({
     type: uiTypes.SET_CHARACTER_PAGE_CHARACTER_RANKINGS_FETCH_FAILED_MESSAGE,
     payload: {

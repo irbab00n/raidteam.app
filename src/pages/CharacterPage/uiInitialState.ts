@@ -1,5 +1,5 @@
 import { CharacterPageUIState } from './interfaces';
-export const INITIAL_UI_STATE = (): CharacterPageUIState => ({
+const uiInitialState = (): CharacterPageUIState => ({
   characterDataFetching: false,
   characterDataFetched: false,
   characterDataFetchFailed: false,
@@ -9,3 +9,5 @@ export const INITIAL_UI_STATE = (): CharacterPageUIState => ({
   characterRankingsFetchFailed: false,
   characterRankingsFetchFailedMessage: '',
 });
+
+export default uiInitialState;

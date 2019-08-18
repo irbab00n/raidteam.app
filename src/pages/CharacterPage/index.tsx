@@ -4,11 +4,14 @@ import queryString from 'query-string';
 import { appHistory } from '../../App';
 import './_CharacterPage.scss';
 
-// UI STATE
+// REDUCERS
 import { mapDispatchToActions } from '../../utils/mapDispatchToActions';
 import * as uiActions from './uiActions';
+import * as dataActions from './dataActions';
+import dataReducer from './dataReducer';
 import uiReducer from './uiReducer';
-import { INITIAL_UI_STATE } from './uiInitialState';
+import dataInitialState from './dataInitialState';
+import uiInitialState from './uiInitialState';
 
 import { CharacterHeader } from '../../components/CharacterPage';
 import { Text } from '../../components/Inputs';
@@ -22,9 +25,7 @@ import WarcraftLogs from '../../components/CharacterPage/WarcraftLogs';
 import { findRealmSlug } from '../../utils/findRealmSlug';
 
 interface CharacterPageProps {
-  match: object;
-  characterData: object | null;
-  setCharacterData: Function;
+  match: { [key: string]: any };
 }
 
 // Formats a characterName and realmSlug into an axios params object
@@ -54,14 +55,15 @@ const getCharacterDataFromBlizzard = (characterName: string, realmSlug: string) 
 };
 
 const CharacterPage = (props: CharacterPageProps) => {
-  // const [dataState, dataDispatch] = useReducer(dataReducer, INITIAL_DATA_STATE());
-  const [uiState, uiDispatch] = useReducer(uiReducer, INITIAL_UI_STATE());
+  const [dataState, dataDispatch] = useReducer(dataReducer, dataInitialState());
+  const dataDispatchAction = mapDispatchToActions(dataDispatch, dataActions);
+
+  const [uiState, uiDispatch] = useReducer(uiReducer, uiInitialState());
   const uiDispatchAction = mapDispatchToActions(uiDispatch, uiActions);
 
   // Input Form state storage
   const [characterName, setCharacterName] = useState<any>('');
   const [realmName, setRealmName] = useState<any>('');
-  const { characterData, setCharacterData } = props;
 
   // Fetches character profile, equipment, and progression statistics
   const getCharacterData = (character: any, realm: any) => {
@@ -73,18 +75,20 @@ const CharacterPage = (props: CharacterPageProps) => {
     if (realmSlug !== null) {
       getCharacterDataFromBlizzard(character, realmSlug)
         .then(result => {
+          dataDispatchAction.setCharacterDataInStore(result.data);
           uiDispatchAction.setCharacterDataFetched(true);
-          setCharacterData(result.data);
         })
         .catch(error => {
-          uiDispatchAction.setCharacterDataFetchFailed(true);
           console.error(error);
+          dataDispatchAction.setCharacterDataInStore(null);
+          uiDispatchAction.setCharacterDataFetchFailed(true);
           uiDispatchAction.setCharacterDataFetchFailedMessage(
             `Something went wrong fetching character data.  Please try again...`
           );
         });
       uiDispatchAction.setCharacterDataFetching(false);
     } else {
+      dataDispatchAction.setCharacterDataInStore(null);
       uiDispatchAction.setCharacterDataFetching(false);
       uiDispatchAction.setCharacterDataFetchFailed(true);
       uiDispatchAction.setCharacterDataFetchFailedMessage(
@@ -103,10 +107,12 @@ const CharacterPage = (props: CharacterPageProps) => {
     if (realmSlug !== null) {
       getRankingsForCharacter(character, realmSlug)
         .then(result => {
+          dataDispatchAction.setCharacterRankingsInStore(result.data);
           uiDispatchAction.setCharacterRankingsFetched(true);
-          // console.log('results from the Warcraft Logs search: ', result);
+          console.log('results from the Warcraft Logs search: ', result);
         })
         .catch(error => {
+          dataDispatchAction.setCharacterRankingsInStore(null);
           uiDispatchAction.setCharacterRankingsFetchFailed(true);
           uiDispatchAction.setCharacterRankingsFetchFailedMessage(
             `Something went wrong fetching warcraft logs character rankings.  Please try again...`
@@ -115,6 +121,7 @@ const CharacterPage = (props: CharacterPageProps) => {
         });
       uiDispatchAction.setCharacterRankingsFetching(false);
     } else {
+      dataDispatchAction.setCharacterRankingsInStore(null);
       uiDispatchAction.setCharacterRankingsFetchFailed(true);
       uiDispatchAction.setCharacterRankingsFetching(false);
       uiDispatchAction.setCharacterRankingsFetchFailedMessage(
@@ -188,7 +195,7 @@ const CharacterPage = (props: CharacterPageProps) => {
         }
       />
       <GridWrapper>
-        {characterData === null && !uiState.characterDataFetching && (
+        {dataState.characterData === null && !uiState.characterDataFetching && (
           <div className="cp_no-character-prompt">
             <h1>Find a Specific Raider</h1>
           </div>
@@ -203,20 +210,20 @@ const CharacterPage = (props: CharacterPageProps) => {
             <div>{uiState.characterDataFetchFailedMessage}</div>
           </div>
         )}
-        {characterData !== null && (
+        {dataState.characterData !== null && (
           <GridItem size="half">
-            <CharacterDisplay characterData={characterData} />
+            <CharacterDisplay characterData={dataState.characterData} />
           </GridItem>
         )}
-        {characterData !== null && (
+        {dataState.characterData !== null && (
           <GridItem size="half" column>
-            <ItemLevel characterData={characterData} />
-            <CurrentProgression characterData={characterData} />
+            <ItemLevel characterData={dataState.characterData} />
+            <CurrentProgression characterData={dataState.characterData} />
           </GridItem>
         )}
-        {characterData !== null && (
+        {dataState.characterData !== null && (
           <GridItem size="full">
-            <WarcraftLogs characterData={characterData} />
+            <WarcraftLogs characterData={dataState.characterData} />
           </GridItem>
         )}
       </GridWrapper>
