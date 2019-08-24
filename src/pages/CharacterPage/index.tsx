@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useReducer } from 'react';
-import axios from 'axios';
 import queryString from 'query-string';
 import { appHistory } from '../../App';
 import './_CharacterPage.scss';
@@ -16,48 +15,32 @@ import uiInitialState from './uiInitialState';
 import { CharacterHeader } from '../../components/CharacterPage';
 import { Text } from '../../components/Inputs';
 import { PrimaryButton } from '../../components/Buttons';
-import { GridWrapper, GridItem } from '../../components/Grid';
-import CharacterDisplay from '../../components/CharacterDisplay';
-import CurrentProgression from '../../components/CharacterPage/CurrentProgression';
-import ItemLevel from '../../components/CharacterPage/ItemLevel';
-import WarcraftLogs from '../../components/CharacterPage/WarcraftLogs';
+import { GridWrapper } from '../../components/Grid';
 
+// RENDERERS
+import {
+  renderCharacterDataFetching,
+  renderCharacterDisplay,
+  renderCharacterFetchFailed,
+  renderCharacterILvlAndProgression,
+  renderCharacterRankings,
+  renderInitialView,
+} from './renderers';
+
+// FUNCTIONS
+import { getCharacterDataFromBlizzard } from './getCharacterDataFromBlizzard';
+import { getRankingsForCharacter } from './getRankingsForCharacter';
 import { findRealmSlug } from '../../utils/findRealmSlug';
 
 interface CharacterPageProps {
   match: { [key: string]: any };
 }
 
-// Formats a characterName and realmSlug into an axios params object
-const createParams = (characterName: string, realmSlug: string) => ({
-  characterName: characterName.toLowerCase(),
-  realmSlug,
-});
-
-// Starts a request against the RaidTeam API to retrieve character rankings from Warcraft Logs
-const getRankingsForCharacter = (characterName: string, realmSlug: string) => {
-  let params = createParams(characterName, realmSlug);
-  let apiLink =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:4000/warcraftlogs/rankings/character'
-      : `${process.env.REACT_APP_RAIDTEAM_API_URL}/warcraftlogs/rankings/character`;
-  return axios.get(apiLink || '', { params });
-};
-
-// Starts a request against the RaidTeam API to retireve character data from Blizzard
-const getCharacterDataFromBlizzard = (characterName: string, realmSlug: string) => {
-  let params = createParams(characterName, realmSlug);
-  let apiLink =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:4000/blizzard/character'
-      : `${process.env.REACT_APP_RAIDTEAM_API_URL}/blizzard/character`;
-  return axios.get(apiLink || '', { params });
-};
-
 const CharacterPage = (props: CharacterPageProps) => {
+  // INITIALIZE DATA STATE
   const [dataState, dataDispatch] = useReducer(dataReducer, dataInitialState());
   const dataDispatchAction = mapDispatchToActions(dataDispatch, dataActions);
-
+  // INITIALIZE UI STATE
   const [uiState, uiDispatch] = useReducer(uiReducer, uiInitialState());
   const uiDispatchAction = mapDispatchToActions(uiDispatch, uiActions);
 
@@ -195,37 +178,14 @@ const CharacterPage = (props: CharacterPageProps) => {
         }
       />
       <GridWrapper>
-        {dataState.characterData === null && !uiState.characterDataFetching && (
-          <div className="cp_no-character-prompt">
-            <h1>Find a Specific Raider</h1>
-          </div>
-        )}
-        {uiState.characterDataFetching && (
-          <div className="cp_no-character-prompt">
-            <h1>Loading...</h1>
-          </div>
-        )}
-        {uiState.characterDataFetchFailed && (
-          <div className="cp_no-character-prompt">
-            <div>{uiState.characterDataFetchFailedMessage}</div>
-          </div>
-        )}
-        {dataState.characterData !== null && (
-          <GridItem size="half">
-            <CharacterDisplay characterData={dataState.characterData} />
-          </GridItem>
-        )}
-        {dataState.characterData !== null && (
-          <GridItem size="half" column>
-            <ItemLevel characterData={dataState.characterData} />
-            <CurrentProgression characterData={dataState.characterData} />
-          </GridItem>
-        )}
-        {dataState.characterData !== null && (
-          <GridItem size="full">
-            <WarcraftLogs characterData={dataState.characterData} />
-          </GridItem>
-        )}
+        {dataState.characterData === null && !uiState.characterDataFetching && renderInitialView()}
+        {uiState.characterDataFetching && renderCharacterDataFetching()}
+        {uiState.characterDataFetchFailed &&
+          renderCharacterFetchFailed(uiState.characterDataFetchFailedMessage)}
+        {dataState.characterData !== null && renderCharacterDisplay(dataState.characterData)}
+        {dataState.characterData !== null &&
+          renderCharacterILvlAndProgression(dataState.characterData)}
+        {dataState.characterData !== null && renderCharacterRankings(dataState.characterData)}
       </GridWrapper>
     </div>
   );
