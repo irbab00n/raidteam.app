@@ -5,12 +5,8 @@ import './_CharacterPage.scss';
 
 // REDUCERS
 import { mapDispatchToActions } from '../../utils/mapDispatchToActions';
-import * as uiActions from './uiActions';
-import * as dataActions from './dataActions';
-import dataReducer from './dataReducer';
-import uiReducer from './uiReducer';
-import dataInitialState from './dataInitialState';
-import uiInitialState from './uiInitialState';
+import * as ui from './ui';
+import * as data from './data';
 
 import { CharacterHeader } from '../../components/CharacterPage';
 import { Text } from '../../components/Inputs';
@@ -38,11 +34,11 @@ interface CharacterPageProps {
 
 const CharacterPage = (props: CharacterPageProps) => {
   // INITIALIZE DATA STATE
-  const [dataState, dataDispatch] = useReducer(dataReducer, dataInitialState());
-  const dataDispatchAction = mapDispatchToActions(dataDispatch, dataActions);
+  const [dataState, dataDispatch] = useReducer(data.reducer, data.initialState());
+  const dataDispatchAction = mapDispatchToActions(dataDispatch, data.actions);
   // INITIALIZE UI STATE
-  const [uiState, uiDispatch] = useReducer(uiReducer, uiInitialState());
-  const uiDispatchAction = mapDispatchToActions(uiDispatch, uiActions);
+  const [uiState, uiDispatch] = useReducer(ui.reducer, ui.initialState());
+  const uiDispatchAction = mapDispatchToActions(uiDispatch, ui.actions);
 
   // Input Form state storage
   const [characterName, setCharacterName] = useState<any>('');

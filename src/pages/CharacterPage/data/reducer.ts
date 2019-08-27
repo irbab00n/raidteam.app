@@ -1,5 +1,5 @@
-import { CharacterPageDataState, CharacterPageAction } from './interfaces';
-import dataTypes from './dataTypes';
+import { CharacterPageDataState, CharacterPageAction } from '../interfaces';
+import dataTypes from './types';
 
 const dataReducer = (state: CharacterPageDataState, action: CharacterPageAction) => {
   let newState = { ...state };

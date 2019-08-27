@@ -1,4 +1,4 @@
-import { CharacterPageDataState } from './interfaces';
+import { CharacterPageDataState } from '../interfaces';
 
 const dataInitialState = (): CharacterPageDataState => ({
   characterData: null,

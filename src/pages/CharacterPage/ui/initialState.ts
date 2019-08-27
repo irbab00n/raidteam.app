@@ -1,4 +1,4 @@
-import { CharacterPageUIState } from './interfaces';
+import { CharacterPageUIState } from '../interfaces';
 const uiInitialState = (): CharacterPageUIState => ({
   characterDataFetching: false,
   characterDataFetched: false,

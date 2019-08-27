@@ -1,7 +1,7 @@
-import dataTypes from './dataTypes';
+import dataTypes from './types';
 
 // CHARACTER DATA
-export const setCharacterDataInStore = (dispatch: React.Dispatch<any>) => (
+const setCharacterDataInStore = (dispatch: React.Dispatch<any>) => (
   data: { [key: string]: any } | null
 ) =>
   dispatch({
@@ -12,7 +12,7 @@ export const setCharacterDataInStore = (dispatch: React.Dispatch<any>) => (
   });
 
 // CHARACTE RRANKINGS
-export const setCharacterRankingsInStore = (dispatch: React.Dispatch<any>) => (rankings: {
+const setCharacterRankingsInStore = (dispatch: React.Dispatch<any>) => (rankings: {
   [key: string]: any | null;
 }) =>
   dispatch({
@@ -21,3 +21,10 @@ export const setCharacterRankingsInStore = (dispatch: React.Dispatch<any>) => (r
       rankings,
     },
   });
+
+const actions = {
+  setCharacterDataInStore,
+  setCharacterRankingsInStore,
+};
+
+export default actions;

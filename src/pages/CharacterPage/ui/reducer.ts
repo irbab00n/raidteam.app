@@ -1,5 +1,5 @@
-import { CharacterPageUIState, CharacterPageAction } from './interfaces';
-import uiTypes from './uiTypes';
+import { CharacterPageUIState, CharacterPageAction } from '../interfaces';
+import uiTypes from './types';
 
 const uiReducer = (state: CharacterPageUIState, action: CharacterPageAction) => {
   let newState = { ...state };
